@@ -1,0 +1,29 @@
+from crewai import Agent
+import os
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+load_dotenv()
+
+api_key= os.getenv("GROQ_API_KEY")
+
+
+llm = ChatGroq(
+    model="groq/meta-llama/llama-4-scout-17b-16e-instruct",
+    api_key=api_key
+)
+
+Webscrapingagent = Agent(
+    role="Job Finder",
+    goal="Find and extract detailed information about internship opportunities from job websites",
+    backstory=(
+        "You are an expert recruiter and web scraping specialist. "
+        "You excel at finding job listings, extracting key details like job titles, "
+        "company names, locations, stipends, and application links. "
+        "You focus on internships in technology fields like machine learning, "
+        "data science, and AI."
+    ),
+    verbose=True,
+    llm=llm,
+    allow_delegation=False,
+    max_iter=3
+)
