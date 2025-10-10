@@ -26,5 +26,6 @@ filter_task = Task(
     expected_output="A ranked list of jobs with similarity scores and explanations for each ranking based on resume match",
     tools=[file_read_tool],
     agent=Filter_agent,
-    context=[scrape_task]
+    context=[scrape_task],
+    output_file="ranked.json"
 )
