@@ -27,3 +27,12 @@ Webscrapingagent = Agent(
     allow_delegation=False,
     max_iter=3
 )
+
+Filter_agent=Agent(
+    role="Job Ranker",
+    goal="Rank the extracted jobs on the basis of their similarities with the resume provided",
+    backstory=(
+    "You are an expert in analysing resumes. "
+    "You have to rank the jobs according its similarity with the resume. "
+    )
+)

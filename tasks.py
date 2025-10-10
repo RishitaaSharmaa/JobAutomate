@@ -12,3 +12,4 @@ scrape_task = Task(
     tools=[search_tool],
     agent=Webscrapingagent
 )
+
