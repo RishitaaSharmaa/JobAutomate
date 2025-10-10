@@ -25,7 +25,6 @@ Webscrapingagent = Agent(
     verbose=True,
     llm=llm,
     allow_delegation=False,
-    max_iter=3
 )
 
 Filter_agent=Agent(
@@ -34,5 +33,7 @@ Filter_agent=Agent(
     backstory=(
     "You are an expert in analysing resumes. "
     "You have to rank the jobs according its similarity with the resume. "
-    )
+    ),
+    verbose=True,
+    llm=llm,
 )
