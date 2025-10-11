@@ -1,6 +1,6 @@
 from agents import Webscrapingagent
 from crewai import Task
-from tools import search_tool, file_read_tool
+from tools import search_tool, pdf_tool
 from agents import Filter_agent
 
 scrape_task = Task(
@@ -24,7 +24,7 @@ filter_task = Task(
         "Rank the jobs from highest to lowest similarity score with detailed explanations."
     ),
     expected_output="A ranked list of jobs with similarity scores and explanations for each ranking based on resume match",
-    tools=[file_read_tool],
+    tools=[pdf_tool],
     agent=Filter_agent,
     context=[scrape_task],
     output_file="ranked.json"

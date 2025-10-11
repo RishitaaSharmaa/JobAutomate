@@ -1,40 +1,24 @@
 ```json
 [
   {
-    "Job Title": "Machine Learning Intern",
-    "Company Name": "Pexaworks Technologies Private Limited",
+    "Job Title": "Python Development Intern",
+    "Company Name": "Treviax.in",
     "Location": "Work from home",
-    "Stipend": "₹ 5,000 - 6,000 /month",
-    "Duration": "6 Months",
-    "Application Link": ""
-  },
-  {
-    "Job Title": "AI Specialist",
-    "Company Name": "QuantGlobal",
-    "Location": "Noida",
-    "Stipend": "₹ 25,000 /month",
-    "Duration": "6 Months",
-    "Application Link": ""
-  },
-  {
-    "Job Title": "LLM",
-    "Company Name": "Indika AI Private Limited",
-    "Location": "Delhi",
-    "Stipend": "₹ 9,000 - 10,000 /month",
-    "Duration": "6 Months",
-    "Application Link": ""
-  },
-  {
-    "Job Title": "Data Science",
-    "Company Name": "Emoolar Technology Private Limited",
-    "Location": "Work from home",
-    "Stipend": "₹ 5,000 - 6,000 /month",
+    "Stipend": "₹ 15,000 - 25,000 /month",
     "Duration": "3 Months",
     "Application Link": ""
   },
   {
+    "Job Title": "Quant Developer Intern",
+    "Company Name": "AlgoBulls",
+    "Location": "Work from home",
+    "Stipend": "₹ 15,000 - 25,000 /month",
+    "Duration": "6 Months",
+    "Application Link": ""
+  },
+  {
     "Job Title": "Machine Learning Intern",
-    "Company Name": "NoirCapial",
+    "Company Name": "NoirCapital",
     "Location": "Work from home",
     "Stipend": "₹ 3,000 - 5,000 /month",
     "Duration": "6 Months",
@@ -42,14 +26,14 @@
   },
   {
     "Job Title": "Artificial Intelligence (AI) Intern",
-    "Company Name": "NoirCapial",
+    "Company Name": "NoirCapital",
     "Location": "Work from home",
     "Stipend": "₹ 3,000 - 5,000 /month",
     "Duration": "6 Months",
     "Application Link": ""
   },
   {
-    "Job Title": "Machine Learning Intern",
+    "Job Title": "AI Engineer",
     "Company Name": "OmniNeura AI Technologies Pvt Ltd",
     "Location": "Work from home",
     "Stipend": "₹ 10,000 /month",
@@ -65,23 +49,31 @@
     "Application Link": ""
   },
   {
-    "Job Title": "Multiphase CFD Simulation",
-    "Company Name": "CPATSS",
+    "Job Title": "Video Annotator",
+    "Company Name": "Indika AI Private Limited",
     "Location": "Work from home",
-    "Stipend": "₹ 1,000 - 15,000 /month",
+    "Stipend": "₹ 8,000 - 15,000 /month",
+    "Duration": "3 Months",
+    "Application Link": ""
+  },
+  {
+    "Job Title": "Data Annotation Intern",
+    "Company Name": "RoadVision AI Private Limited",
+    "Location": "Work from home",
+    "Stipend": "₹ 8,000 - 12,000 /month",
+    "Duration": "3 Months",
+    "Application Link": ""
+  },
+  {
+    "Job Title": "AI Engineer",
+    "Company Name": "Sameer Khatri",
+    "Location": "Bangalore (Hybrid)",
+    "Stipend": "₹ 3,500 - 3,501 /month",
     "Duration": "6 Months",
     "Application Link": ""
   },
   {
-    "Job Title": "Python Developer Trainee",
-    "Company Name": "Monkhub",
-    "Location": "Gurgaon",
-    "Stipend": "₹ 10,000 /month",
-    "Duration": "6 Months",
-    "Application Link": ""
-  },
-  {
-    "Job Title": "Android App Development",
+    "Job Title": "Android App Developer Intern",
     "Company Name": "Practice Buzz",
     "Location": "Chandigarh",
     "Stipend": "₹ 20,000 - 50,000 /month",
