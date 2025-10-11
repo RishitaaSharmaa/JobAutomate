@@ -8,7 +8,7 @@ api_key= os.getenv("GROQ_API_KEY")
 
 
 llm = ChatGroq(
-    model="groq/meta-llama/llama-4-scout-17b-16e-instruct",
+    model="groq/compound-mini",
     api_key=api_key
 )
 

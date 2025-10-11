@@ -9,24 +9,27 @@ search_tool = ScrapeWebsiteTool(website_url="https://internshala.com/internships
 # file_read_tool= FileReadTool(file_path="C:\\Users\\DeLL\\OneDrive\\Documents\\coding\\WebAutomate\\Rishita_Sharma.pdf")
 
 
-class MyToolInput(BaseModel):
-    argument: str =Field(..., description="Path to the PDF file")
+class PDFReaderInput(BaseModel):
+    pdf_path: str = Field(..., description="Path to the PDF file to extract text from")
 
 class PDFReaderTool(BaseTool):
-    name: str = "PDFReader"
-    description: str = "Reads a PDF file and returns its full text context. "
-    args_schema: Type[BaseModel] = MyToolInput
+    name: str = "PDF Reader Tool"
+    description: str = "Reads a PDF file and returns its full text content."
+    args_schema: Type[BaseModel] = PDFReaderInput
 
-    def _run(self , pdf_path: str)-> str:
-        reader=PdfReader(pdf_path)
-        pages=[]
-        for page in reader.pages:
-            text=page.extract_text()
-            if text:
-                pages.append(text)
-        full_text= "\n".join(pages)
-        return full_text
-    
+    def _run(self, pdf_path: str) -> str:  
+        try:
+            from PyPDF2 import PdfReader
+            reader = PdfReader(pdf_path)
+            text = ""
+            for page in reader.pages:
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + "\n"
+            return text if text.strip() else "No text could be extracted from the PDF."
+        except Exception as e:
+            return f"Error reading PDF: {str(e)}"
+
 
 pdf_tool = PDFReaderTool()
 result_text = pdf_tool.run(pdf_path="Rishita_Sharma.pdf")

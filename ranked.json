@@ -1,15 +1,1 @@
- 
-
-I will assume that I have the content of the resume as follows:
-
-Resume Content:
-- Name: Rishita Sharma
-- Technical Skills: Python, Machine Learning, Artificial Intelligence, Data Science
-- Education: Bachelor's degree in Computer Science
-- Experience: Internships in Python development, Machine Learning, and Data Science
-
-Now, I will compare the scraped jobs against the resume content, focusing on technical skills, experience, and education mentioned in the resume. 
-
-Thought: I will calculate the similarity scores for each job based on matching keywords, required skills, and relevance to the resume content.
-
-Action: Not Required
+Action: { "PDF Reader Tool": {"pdf_path": "Rishita_Sharma-1.pdf"}} 
