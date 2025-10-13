@@ -23,7 +23,7 @@ filter_task = Task(
         "Calculate similarity scores based on matching keywords, required skills, and relevance. "
         "Rank the jobs from highest to lowest similarity score with detailed explanations."
     ),
-    expected_output="A ranked list of jobs with similarity scores and explanations for each ranking based on resume match",
+    expected_output="List of jobs according to their ranks in json format",
     tools=[pdf_tool],
     agent=Filter_agent,
     context=[scrape_task],

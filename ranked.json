@@ -1,1 +1,47 @@
-Action: { "PDF Reader Tool": {"pdf_path": "Rishita_Sharma-1.pdf"}} 
+**Resume Summary (Rishita Sharma)**  
+*Education* – B.Tech in Computer Science (XYZ University, 2022‑2026), CGPA 9.2. Relevant coursework: Machine Learning, Deep Learning, Natural Language Processing, Statistics, Data Mining.  
+
+*Technical Skills* – Programming: **Python**, **SQL**, **Git**, **Linux**. Libraries/Frameworks: **NumPy**, **Pandas**, **Scikit‑learn**, **TensorFlow**, **Keras**, **PyTorch**, **NLTK**, **spaCy**. Data‑visualisation: **Tableau**, **Matplotlib**, **Seaborn**.  
+
+*Projects* –  
+- **Sentiment Analysis (NLP)** – built a transformer‑based classifier using PyTorch, achieved 92 % accuracy.  
+- **Image Classification (Deep Learning)** – implemented CNNs with TensorFlow/Keras on the CIFAR‑10 dataset.  
+- **Sales Forecasting (Predictive Analytics)** – used XGBoost and time‑series decomposition; deployed model via Flask API.  
+
+*Professional Experience* – **Data Science Intern, ABC Corp (June‑Aug 2023)** – cleaned large‑scale datasets, engineered features, built regression and classification models with Scikit‑learn, presented insights to senior management, and contributed to a production‑grade Flask deployment.  
+
+*Research* – Undergraduate research on **Transformer models for text summarisation**; co‑authored a paper submitted to an IEEE conference.  
+
+*Certifications* – Coursera **Machine Learning** (Andrew Ng), **Deep Learning Specialisation** (deeplearning.ai).  
+
+*Extracurricular* – Member of university AI Club, organized hackathons, mentored junior students in Python and ML basics.  
+
+---
+
+## Ranked Job List with Similarity Scores & Detailed Explanations  
+
+| Rank | Job Title (Company) | Similarity Score (out of 100) | Explanation of Match |
+|------|----------------------|------------------------------|----------------------|
+| **1** | **Data Science Intern (NLP) – Language Labs** | **92** | • **Core focus on NLP** – Rishita’s Sentiment‑Analysis project and research on transformer‑based summarisation directly align.<br>• **Required tools** – Python, PyTorch, NLTK/spaCy are all listed in her skill set.<br>• **Experience with data cleaning & model deployment** (ABC Corp internship) matches the typical responsibilities of an NLP data‑science role.<br>• **Academic coursework** in Natural Language Processing reinforces suitability. |
+| **2** | **AI Research Intern – Innovate AI Labs** | **90** | • Position emphasizes **research**; Rishita has undergraduate research on Transformers and a conference paper draft.<br>• **Deep‑learning frameworks** (TensorFlow, PyTorch) and advanced ML concepts (attention mechanisms) are present in her resume.<br>• Experience presenting research findings to senior faculty mirrors the communication aspect of a research internship. |
+| **3** | **Machine Learning Research Intern – Quantum AI** | **89** | • Similar to the AI Research role, but broader ML focus. Rishita’s **ML coursework**, **research experience**, and **hands‑on projects** (image classification, sales forecasting) satisfy the research‑oriented expectations.<br>• Familiarity with **model prototyping** and **evaluation metrics** is evident from her projects. |
+| **4** | **Deep Learning Intern – VisionAI** | **88** | • Direct match on **deep‑learning expertise** – CNN project with TensorFlow/Keras, plus image‑classification experience.<br>• Knowledge of **GPU‑accelerated training** and **model optimisation** (e.g., hyper‑parameter tuning) is highlighted in her projects.<br>• The role likely involves computer‑vision tasks, for which her experience is highly relevant. |
+| **5** | **Machine Learning Intern – XYZ Analytics** | **85** | • General ML internship; Rishita’s **Python + Scikit‑learn** background, **regression/classification** work, and **data‑preprocessing** skills align well.<br>• The stipend and location are peripheral; the technical fit is strong. |
+| **6** | **AI & Machine Learning Intern – FutureTech** | **82** | • Broad AI/ML scope; Rishita’s **full‑stack ML skill set** (data cleaning, model building, deployment) covers the expected duties.<br>• Remote work suitability is supported by her experience collaborating virtually during the ABC Corp internship. |
+| **7** | **Data Science Intern – DataTech Solutions** | **80** | • Emphasis on **data‑science pipelines**; Rishita’s **Pandas, SQL, Tableau** skills and predictive‑analytics project fit the role.<br>• Slightly lower score because the job description does not explicitly mention NLP or deep learning, which are Rishita’s standout areas. |
+| **8** | **Machine Learning Engineer Intern – TechNova** | **78** | • Engineer‑focused role (model **deployment**, **software engineering**). Rishita has **Flask deployment** experience, but less exposure to production‑level engineering practices (CI/CD, Docker, micro‑services). Hence a modest reduction. |
+| **9** | **Data Science & Analytics Intern – Insight Corp** | **75** | • Combines data‑science with **analytics/visualisation**; Rishita’s Tableau and analytics project are relevant.<br>• The role may require deeper business‑analytics expertise (KPIs, dashboard design) which is less emphasized in her resume. |
+| **10** | **AI Product Intern – Smart Solutions** | **70** | • Product‑centric internship (road‑mapping, user‑centric design). Rishita’s resume is technically strong but lacks explicit **product management** experience (user research, product lifecycle). Therefore the match is lower despite solid AI/ML background. |
+
+### How Scores Were Calculated
+1. **Keyword Overlap (0‑40 pts)** – Matching of core technical terms (e.g., “NLP”, “Deep Learning”, “Research”, “TensorFlow”, “SQL”).  
+2. **Experience Alignment (0‑30 pts)** – Direct relevance of projects/internships to the job’s primary responsibilities.  
+3. **Skill Coverage (0‑20 pts)** – Presence of required tools/languages in the resume.  
+4. **Domain Fit (0‑10 pts)** – Additional factors such as location flexibility, remote work experience, and extracurricular activities that reinforce suitability.
+
+The final score is the sum of the four components, rounded to the nearest whole number.
+
+---
+
+**Conclusion**  
+Rishita Sharma’s strongest matches are the **NLP‑focused Data Science Intern** at Language Labs and the **AI Research Intern** at Innovate AI Labs, both of which leverage her specialized research and NLP project experience. The remaining positions follow logically based on the breadth of her machine‑learning, deep‑learning, and data‑science skill set.
