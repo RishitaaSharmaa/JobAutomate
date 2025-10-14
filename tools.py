@@ -3,11 +3,13 @@ from crewai.tools import BaseTool
 from typing import Type
 from pydantic import BaseModel, Field
 from PyPDF2 import PdfReader
+from crewai_tools import SeleniumScrapingTool
+
 
 search_tool = ScrapeWebsiteTool(website_url="https://internshala.com/internships/machine-learning-internship")
 
-# file_read_tool= FileReadTool(file_path="C:\\Users\\DeLL\\OneDrive\\Documents\\coding\\WebAutomate\\Rishita_Sharma.pdf")
 
+apply_tool=SeleniumScrapingTool()
 
 class PDFReaderInput(BaseModel):
     pdf_path: str = Field(..., description="Path to the PDF file to extract text from")
@@ -19,7 +21,6 @@ class PDFReaderTool(BaseTool):
 
     def _run(self, pdf_path: str) -> str:  
         try:
-            from PyPDF2 import PdfReader
             reader = PdfReader(pdf_path)
             text = ""
             for page in reader.pages:

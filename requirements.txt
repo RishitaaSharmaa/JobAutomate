@@ -4,3 +4,5 @@ crewai
 crewai-tools
 langchain-groq
 dotenv
+PyPDF2
+crewai_tools

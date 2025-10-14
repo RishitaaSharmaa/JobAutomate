@@ -1,35 +1,52 @@
 [
-  {
-    "Job Title": "AI Research Intern",
-    "Company Name": "Cognitive Labs",
-    "Location": "Mumbai",
-    "Stipend": "₹9,000/month",
-    "Duration": "4 months",
-    "Application Link": "https://internshala.com/internships/ai-internship/apply/54321",
-    "Similarity Score": 95,
-    "Rank": 1,
-    "Explanation": "Strong alignment with LLM projects (GenLang, SearchWithChat), LangChain, Hugging Face, and prompt engineering expertise. Directly matches Rishita's work on AI models, LLM frameworks, and research-oriented hackathon projects."
-  },
-  {
-    "Job Title": "Machine Learning Intern",
-    "Company Name": "Tech Innovators Pvt. Ltd.",
-    "Location": "Bangalore",
-    "Stipend": "₹8,000/month",
-    "Duration": "3 months",
-    "Application Link": "https://internshala.com/internships/machine-learning-internship/apply/12345",
-    "Similarity Score": 90,
-    "Rank": 2,
-    "Explanation": "Matches ML engineering experience (convolutional neural networks, IoT integration for irrigation), TensorFlow/PyTorch proficiency, and deployment skills (Flask, Docker)."
-  },
-  {
-    "Job Title": "Data Science Intern",
-    "Company Name": "Analytics Solutions Inc.",
-    "Location": "Hyderabad",
-    "Stipend": "₹7,500/month",
-    "Duration": "2 months",
-    "Application Link": "https://internshala.com/internships/data-science-internship/apply/67890",
-    "Similarity Score": 80,
-    "Rank": 3,
-    "Explanation": "Partially aligns with SQL skills, data-centric irrigation project, and analytical hackathon achievements. Less focused on advanced ML/AI compared to other roles."
-  }
+    {
+        "Job Title": "Machine Learning Intern",
+        "Company Name": "Tech Innovators Pvt Ltd",
+        "Location": "Bangalore",
+        "Stipend": "₹6000/month",
+        "Duration": "3 months",
+        "Application Link": "https://internshala.com/internships/machine-learning-internship/tech_innovators_ml_intern",
+        "Rank": 1,
+        "Explanation": "High similarity due to Rishita's expertise in ML frameworks (TensorFlow, PyTorch), predictive modeling (soil moisture forecasting), and IoT-integrated ML systems (smart irrigation). Matches job requirements for ML algorithm development and data-centric solutions."
+    },
+    {
+        "Job Title": "AI Research Intern",
+        "Company Name": "NeuroTech Labs",
+        "Location": "Mumbai",
+        "Stipend": "₹8000/month",
+        "Duration": "6 months",
+        "Application Link": "https://internshala.com/internships/ai-research-internship/neurotech_ai_intern",
+        "Rank": 2,
+        "Explanation": "Strong match with her NLP projects (GenLang LCM model), LangChain/LLM experience, and hackathon projects involving AI-driven systems (fog harvesting, fire safety). Demonstrates research-level AI innovation."
+    },
+    {
+        "Job Title": "Data Science Intern",
+        "Company Name": "Data Insights Solutions",
+        "Location": "Hyderabad",
+        "Stipend": "₹7500/month",
+        "Duration": "4 months",
+        "Application Link": "https://internshala.com/internships/data-science-internship/data_insights_ds_intern",
+        "Rank": 3,
+        "Explanation": "Matches her data analysis skills (Wikipedia sentence processing), SQL proficiency, and experience with vector databases (ChromaDB/FAISS) for data science tasks."
+    },
+    {
+        "Job Title": "Machine Learning Engineer Intern",
+        "Company Name": "CodeCraft Technologies",
+        "Location": "Chennai",
+        "Stipend": "₹5000/month",
+        "Duration": "2 months",
+        "Application Link": "https://internshala.com/internships/machine-learning-engineer-internship/codecraft_ml_intern",
+        "Rank": 4,
+        "Explanation": "Alignds with her ML system deployment experience (Flask, Docker) and engineering projects (smart irrigation protocol, fog harvesting system)."
+    },
+    {
+        "Job Title": "Data Analyst Intern",
+        "Company Name": "Analytics Plus",
+        "Location": "Kolkata",
+        "Stipend": "₹5500/month",
+        "Duration": "3 months",
+        "Application Link": "https://internshala.com/internships/data-analyst-internship/analytics_plus_intern",
+        "Rank": 5,
+        "Explanation": "Partial match with her SQL and data processing skills, but her resume emphasizes ML engineering and AI research over traditional data analysis roles."
+    }
 ]

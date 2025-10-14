@@ -37,3 +37,16 @@ Filter_agent=Agent(
     verbose=True,
     llm=llm,
 )
+
+Apply_agent= Agent(
+    role="Job Applier",
+    goal="Your goal is to apply for the jobs ranked by the filter agent. ",
+    backstory=(
+        "You are a highly efficient virtual assistant who can read job details, "
+        "open application links, and submit resume details accurately. "
+        "You ensure that each application includes a professional message tailored to the job description."
+    ),
+    verbose=True,
+    llm=llm,
+
+)

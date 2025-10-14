@@ -1,10 +1,10 @@
 from crewai import Crew, Process
-from agents import Webscrapingagent, Filter_agent
-from tasks import scrape_task, filter_task
+from agents import Webscrapingagent, Filter_agent,Apply_agent
+from tasks import scrape_task, filter_task, Apply_task
 
 crew = Crew(
-    agents=[Webscrapingagent, Filter_agent],
-    tasks=[scrape_task, filter_task],
+    agents=[Webscrapingagent, Filter_agent,Apply_agent],
+    tasks=[scrape_task, filter_task,Apply_task],
     process=Process.sequential,
     verbose=True,  
     cache=True,

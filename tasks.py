@@ -1,7 +1,7 @@
 from agents import Webscrapingagent
 from crewai import Task
-from tools import search_tool, pdf_tool
-from agents import Filter_agent
+from tools import search_tool, pdf_tool, apply_tool
+from agents import Filter_agent, Apply_agent
 
 scrape_task = Task(
     description=(
@@ -28,4 +28,18 @@ filter_task = Task(
     agent=Filter_agent,
     context=[scrape_task],
     output_file="ranked.json"
+)
+
+Apply_task= Task(
+    description=(
+        "Use the ranked job list from 'ranked.json' and automatically apply to each job. "
+        "Read the application links, open them, and upload the resume (Rishita_Sharma-1.pdf). "
+        "If direct submission isn't possible, generate a professional application email or message. "
+        "Ensure every job application is customized and properly formatted."
+    ),
+    expected_output="List of jobs successfully applied in a json format",
+    tools=[apply_tool],
+    agent= Apply_agent,
+    context=[filter_task],
+    output_file="Applied.json"
 )
