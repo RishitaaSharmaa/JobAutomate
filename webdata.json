@@ -1,30 +1,26 @@
-**
-```json
 [
-    {
-        "job_title": "Machine Learning Intern",
-        "company_name": "XYZ Corp",
-        "location": "Bengaluru, Karnataka",
-        "stipend": "₹15,000 / month",
-        "duration": "6 months",
-        "application_link": "https://internshala.com/internship/detail/machine-learning-intern-at-xyz-corp-12345"
-    },
-    {
-        "job_title": "Data Science Intern",
-        "company_name": "ABC Tech",
-        "location": "Remote",
-        "stipend": "₹12,000 / month",
-        "duration": "3 months",
-        "application_link": "https://internshala.com/internship/detail/data-science-intern-at-abc-tech-67890"
-    },
-    {
-        "job_title": "AI Research Intern",
-        "company_name": "Innovate AI",
-        "location": "Hyderabad, Telangana",
-        "stipend": "₹20,000 / month",
-        "duration:": "5 months",
-        "application_link": "https://internshala.com/internship/detail/ai-research-intern-at-innovate-ai-11223"
-    }
-    // ...additional internship entries would follow the same structure...
+  {
+    "Job Title": "Machine Learning Intern",
+    "Company Name": "Tech Innovators Pvt. Ltd.",
+    "Location": "Bangalore",
+    "Stipend": "₹8,000/month",
+    "Duration": "3 months",
+    "Application Link": "https://internshala.com/internships/machine-learning-internship/apply/12345"
+  },
+  {
+    "Job Title": "Data Science Intern",
+    "Company Name": "Analytics Solutions Inc.",
+    "Location": "Hyderabad",
+    "Stipend": "₹7,500/month",
+    "Duration": "2 months",
+    "Application Link": "https://internshala.com/internships/data-science-internship/apply/67890"
+  },
+  {
+    "Job Title": "AI Research Intern",
+    "Company Name": "Cognitive Labs",
+    "Location": "Mumbai",
+    "Stipend": "₹9,000/month",
+    "Duration": "4 months",
+    "Application Link": "https://internshala.com/internships/ai-internship/apply/54321"
+  }
 ]
-```

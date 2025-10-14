@@ -8,7 +8,7 @@ api_key= os.getenv("GROQ_API_KEY")
 
 
 llm = ChatGroq(
-    model="groq/groq/compound-mini",
+    model="groq/qwen/qwen3-32b",
     api_key=api_key
 )
 

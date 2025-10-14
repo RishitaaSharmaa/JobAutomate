@@ -17,7 +17,7 @@ scrape_task = Task(
 
 filter_task = Task(
     description=(
-        "Read and analyze the resume from the PDF file (Rishita_Sharma-1.pdf). "
+        "Read and analyze the resume from the PDF file (Rishita_Sharma.pdf). "
         "Compare the scraped jobs against the resume content, focusing on technical skills, "
         "experience, and education mentioned in the resume. "
         "Calculate similarity scores based on matching keywords, required skills, and relevance. "
