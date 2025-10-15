@@ -5,6 +5,7 @@ from tasks import scrape_task, filter_task, Apply_task
 crew = Crew(
     agents=[Webscrapingagent, Filter_agent,Apply_agent],
     tasks=[scrape_task, filter_task,Apply_task],
+    
     process=Process.sequential,
     verbose=True,  
     cache=True,
