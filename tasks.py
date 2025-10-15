@@ -17,7 +17,7 @@ scrape_task = Task(
 
 filter_task = Task(
     description=(
-        "Read 'skills.txt' and rank internships based on relevance to resume keywords and skills."
+        "Read 'skills.txt' and rank internships based on relevance to resume keywords and skill."
     ),
     expected_output="JSON list of ranked jobs with similarity scores.",
     tools=[file_read_tool],
@@ -27,10 +27,13 @@ filter_task = Task(
     async_execution=False,
 )
 
+
+resume_path="Rishita_Sharma.pdf"
 Apply_task = Task(
     description=(
-        "Use 'ranked.json' to apply to internships by opening application links "
-        "and submitting 'Rishita_Sharma.pdf'. If direct submission fails, write a short, professional email."
+        f"Use 'ranked.json' to apply to internships. "
+        f"For each listing, open the application link and upload '{resume_path}'. "
+        "If file upload fails, generate a short professional email."
     ),
     expected_output="JSON list of successfully applied jobs.",
     tools=[apply_tool],

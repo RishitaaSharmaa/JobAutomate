@@ -6,7 +6,8 @@
     "stipend": "₹10,000 - ₹15,000",
     "duration": "3 months",
     "link": "https://internshala.com/internships/machine-learning-internship/12345",
-    "similarity_score": 0.85
+    "similarity_score": 0.85,
+    "status": "applied"
   },
   {
     "title": "Data Science Intern",
@@ -15,7 +16,8 @@
     "stipend": "₹12,000 - ₹18,000",
     "duration": "4 months",
     "link": "https://internshala.com/internships/data-science-internship/67890",
-    "similarity_score": 0.65
+    "similarity_score": 0.65,
+    "status": "applied"
   },
   {
     "title": "AI Research Intern",
@@ -24,6 +26,7 @@
     "stipend": "₹8,000 - ₹12,000",
     "duration": "2 months",
     "link": "https://internshala.com/internships/ai-research-internship/54321",
-    "similarity_score": 0.40
+    "similarity_score": 0.40,
+    "status": "applied"
   }
 ]
