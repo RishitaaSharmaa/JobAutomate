@@ -1,6 +1,6 @@
 from agents import Webscrapingagent
 from crewai import Task
-from tools import search_tool, pdf_tool, apply_tool, file_read_tool
+from tools import search_tool, apply_tool, file_read_tool
 from agents import Filter_agent, Apply_agent
 
 scrape_task = Task(
@@ -17,7 +17,7 @@ scrape_task = Task(
 
 filter_task = Task(
     description=(
-        "Read and analyze the resume from the PDF file (Rishita_Sharma.pdf). "
+        "Read and analyze the resume from the text file skills.txt . "
         "Compare the scraped jobs against the resume content, focusing on technical skills, "
         "experience, and education mentioned in the resume. "
         "Calculate similarity scores based on matching keywords, required skills, and relevance. "

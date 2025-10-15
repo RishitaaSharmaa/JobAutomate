@@ -12,6 +12,8 @@ crew = Crew(
     max_rpm=100,
     share_crew=True
 )
+resume_path="Rishita_Sharma.pdf"
+Apply_task.context.append(resume_path)
 
 result = crew.kickoff()
 print(result)
