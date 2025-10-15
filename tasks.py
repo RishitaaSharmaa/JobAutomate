@@ -5,41 +5,38 @@ from agents import Filter_agent, Apply_agent
 
 scrape_task = Task(
     description=(
-        "Scrape the Internshala website and extract detailed information about internship opportunities. "
-        "Focus on finding job titles, company names, locations, stipends, duration, and application links. "
-        "Look for machine learning, data science, and AI related internships specifically."
+        "Scrape Internshala for Machine Learning, Data Science, and AI internships. "
+        "Extract job title, company, location, stipend, duration, and link."
     ),
-    expected_output="A structured list of internship opportunities with job titles, company names, locations, stipends, duration, and application links",
+    expected_output="JSON list of internships with details.",
     tools=[search_tool],
     agent=Webscrapingagent,
-    output_file="webdata.json"
+    output_file="webdata.json",
+    async_execution=False,  
 )
 
 filter_task = Task(
     description=(
-        "Read and analyze the resume from the text file skills.txt . "
-        "Compare the scraped jobs against the resume content, focusing on technical skills, "
-        "experience, and education mentioned in the resume. "
-        "Calculate similarity scores based on matching keywords, required skills, and relevance. "
-        "Rank the jobs from highest to lowest similarity score with detailed explanations."
+        "Read 'skills.txt' and rank internships based on relevance to resume keywords and skills."
     ),
-    expected_output="List of jobs according to their ranks in json format",
+    expected_output="JSON list of ranked jobs with similarity scores.",
     tools=[file_read_tool],
     agent=Filter_agent,
-    context=[scrape_task],
-    output_file="ranked.json"
+    context=[scrape_task],  
+    output_file="ranked.json",
+    async_execution=False,
 )
 
-Apply_task= Task(
+Apply_task = Task(
     description=(
-        "Use the ranked job list from 'ranked.json' and automatically apply to each job. "
-        "Read the application links, open them, and upload the resume (Rishita_Sharma.pdf). "
-        "If direct submission isn't possible, generate a professional application email or message. "
-        "Ensure every job application is customized and properly formatted."
+        "Use 'ranked.json' to apply to internships by opening application links "
+        "and submitting 'Rishita_Sharma.pdf'. If direct submission fails, write a short, professional email."
     ),
-    expected_output="List of jobs successfully applied in a json format",
+    expected_output="JSON list of successfully applied jobs.",
     tools=[apply_tool],
-    agent= Apply_agent,
+    agent=Apply_agent,
     context=[filter_task],
-    output_file="Applied.json"
+    output_file="Applied.json",
+    async_execution=False,
 )
+

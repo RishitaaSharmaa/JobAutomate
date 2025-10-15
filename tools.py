@@ -6,8 +6,6 @@ from PyPDF2 import PdfReader
 from crewai_tools import SeleniumScrapingTool
 from crewai_tools import FileReadTool
 
-file_read_tool = FileReadTool()
-
 file_read_tool = FileReadTool(file_path='skills.txt')
 
 search_tool = ScrapeWebsiteTool(website_url="https://internshala.com/internships/machine-learning-internship")
