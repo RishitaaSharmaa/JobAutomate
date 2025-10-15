@@ -1,0 +1,4 @@
+ Programming & ML: Python, Scikit-learn, PyTorch, TensorFlow, Keras, OpenCV, Mediapipe, SQL
+ LLMs & Frameworks: LangChain, LangGraph, Hugging Face, RAG, Crew AI, Model Context Protocol
+ Concepts: Prompt Engineering, Vector Databases (ChromaDB, FAISS)
+ Deployment & Tools: Flask, Streamlit, Docker, Kubernetes, Git
