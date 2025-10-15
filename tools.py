@@ -6,16 +6,14 @@ from PyPDF2 import PdfReader
 from crewai_tools import SeleniumScrapingTool
 from crewai_tools import FileReadTool
 
+from dotenv import load_dotenv
+import os, time, json
+
+
 file_read_tool = FileReadTool(file_path='skills.txt')
 
 search_tool = ScrapeWebsiteTool(website_url="https://internshala.com/internships/machine-learning-internship")
 
-
-# apply_tool=SeleniumScrapingTool()
-
-
-from dotenv import load_dotenv
-import os, time, json
 
 load_dotenv()
 
@@ -48,17 +46,14 @@ class InternshalaApplyTool(SeleniumScrapingTool):
                 driver.get(job_link)
                 time.sleep(3)
 
-                # Click Apply button if present
                 apply_button = driver.find_element("xpath", "//button[contains(text(),'Apply')]")
                 apply_button.click()
                 time.sleep(3)
 
-                # Upload resume
                 upload = driver.find_element("xpath", "//input[@type='file']")
                 upload.send_keys(os.path.abspath(resume_path))
                 time.sleep(3)
 
-                # Submit application
                 submit_btn = driver.find_element("xpath", "//button[contains(text(),'Submit')]")
                 submit_btn.click()
                 time.sleep(3)
@@ -79,7 +74,6 @@ class InternshalaApplyTool(SeleniumScrapingTool):
                     "status": f"Failed: {str(e)}"
                 })
 
-        # Save application results
         with open("Applied.json", "w", encoding="utf-8") as f:
             json.dump(applied_jobs, f, indent=2)
         print("📄 Results saved in Applied.json")
@@ -89,7 +83,6 @@ class InternshalaApplyTool(SeleniumScrapingTool):
         from selenium.webdriver.chrome.service import Service
         from selenium.webdriver.chrome.options import Options
 
-        # Configure Chrome
         options = Options()
         options.add_argument("--start-maximized")
 
@@ -101,17 +94,14 @@ class InternshalaApplyTool(SeleniumScrapingTool):
         try:
             self._login(driver)
 
-            # Load ranked jobs
             with open("ranked.json", "r", encoding="utf-8") as f:
                 ranked_jobs = json.load(f)
 
-            # Apply to jobs
             self._apply_to_jobs(driver, ranked_jobs, resume_path)
 
         finally:
             driver.quit()
-            print("🧹 Browser closed.")
+            print("Browser closed.")
             return "All jobs processed."
 
-# Initialize the tool
 apply_tool = InternshalaApplyTool()
