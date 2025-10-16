@@ -35,7 +35,7 @@ Apply_task = Task(
         f"For each listing, open the application link and upload '{resume_path}'. "
         "If file upload fails, generate a short professional email."
     ),
-    expected_output="JSON list of successfully applied jobs.",
+    expected_output="JSON list of jobs where resume gets uploaded successfully.",
     tools=[apply_tool],
     agent=Apply_agent,
     context=[filter_task],

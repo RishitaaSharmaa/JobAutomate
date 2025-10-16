@@ -17,19 +17,42 @@ search_tool = ScrapeWebsiteTool(website_url="https://internshala.com/internships
 
 load_dotenv()
 
+from crewai_tools import ScrapeWebsiteTool, SeleniumScrapingTool, FileReadTool
+from crewai.tools import BaseTool
+from typing import Type
+from pydantic import BaseModel, Field
+from dotenv import load_dotenv
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from PyPDF2 import PdfReader
+import os, time, json
+
+
+load_dotenv()
+
+class InternshalaApplyInput(BaseModel):
+    ranked_jobs_path: str = Field(..., description="Path to the ranked jobs JSON file")
+    resume_path: str = Field(..., description="Path to the resume PDF file")
+
+
 class InternshalaApplyTool(SeleniumScrapingTool):
+    name: str = "Internshala Apply Tool"
+    description: str = "Logs into Internshala and applies to ranked internships using Selenium automation."
+    args_schema: Type[BaseModel] = InternshalaApplyInput
+
+
     def _login(self, driver):
         email = os.getenv("INTERN_EMAIL")
         password = os.getenv("INTERN_PASSWORD")
 
         print("Logging into Internshala...")
         driver.get("https://internshala.com/login")
-
         time.sleep(3)
+
         driver.find_element("id", "email").send_keys(email)
         driver.find_element("id", "password").send_keys(password)
         driver.find_element("xpath", "//button[contains(text(),'Login')]").click()
-
         time.sleep(4)
         print("✅ Logged in successfully!")
 
@@ -42,7 +65,7 @@ class InternshalaApplyTool(SeleniumScrapingTool):
                 job_title = job.get("job_title")
                 company = job.get("company")
 
-                print(f"🚀 Applying to {job_title} at {company}...")
+                print(f"Applying to {job_title} at {company}...")
                 driver.get(job_link)
                 time.sleep(3)
 
@@ -76,32 +99,28 @@ class InternshalaApplyTool(SeleniumScrapingTool):
 
         with open("Applied.json", "w", encoding="utf-8") as f:
             json.dump(applied_jobs, f, indent=2)
-        print("📄 Results saved in Applied.json")
 
-    def _run(self, *args, **kwargs):
-        from selenium import webdriver
-        from selenium.webdriver.chrome.service import Service
-        from selenium.webdriver.chrome.options import Options
+        print("Results saved in Applied.json")
 
+    def run(self, ranked_jobs_path: str, resume_path: str):
+        """Main entry point for CrewAI"""
         options = Options()
         options.add_argument("--start-maximized")
 
         service = Service()
         driver = webdriver.Chrome(service=service, options=options)
 
-        resume_path = "Rishita_Sharma.pdf"
-
         try:
             self._login(driver)
-
-            with open("ranked.json", "r", encoding="utf-8") as f:
+            with open(ranked_jobs_path, "r", encoding="utf-8") as f:
                 ranked_jobs = json.load(f)
-
             self._apply_to_jobs(driver, ranked_jobs, resume_path)
-
         finally:
             driver.quit()
             print("Browser closed.")
-            return "All jobs processed."
 
+        return "All jobs processed successfully."
+
+
+# Example usage:
 apply_tool = InternshalaApplyTool()
