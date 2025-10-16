@@ -1,29 +1,12 @@
 [
-  {
-    "title": "Machine Learning Intern",
-    "company": "Tech Innovators Pvt. Ltd.",
-    "location": "Bangalore",
-    "stipend": "₹8000/month",
-    "duration": "3 months",
-    "link": "https://internshala.com/internships/machine-learning-internship-at-tech-innovators/2",
-    "similarity_score": 0.85
-  },
-  {
-    "title": "Data Scientist Intern",
-    "company": "DataGen Analytics",
-    "location": "Hyderabad",
-    "stipend": "₹7500/month",
-    "duration": "4 months",
-    "link": "https://internshala.com/internships/data-science-internship-at-data-gen/5",
-    "similarity_score": 0.70
-  },
-  {
-    "title": "AI Research Intern",
-    "company": "NeuroTech Solutions",
-    "location": "Pune",
-    "stipend": "₹9000/month",
-    "duration": "2 months",
-    "link": "https://internshala.com/internships/ai-research-internship-at-neurotech/8",
-    "similarity_score": 0.65
-  }
+    {
+        "title": "Machine Learning Intern",
+        "company": "ABC Innovations",
+        "similarity_score": 36.36
+    },
+    {
+        "title": "AI Research Intern",
+        "company": "DataMind Technologies",
+        "similarity_score": 22.73
+    }
 ]
