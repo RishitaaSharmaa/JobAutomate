@@ -11,14 +11,14 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
-import os, json, time , random
+import os, json, time 
 import undetected_chromedriver as uc
 
 load_dotenv()
 
 class InternshalaApplyTool(BaseTool):
-    name = "Internshala Auto Apply Tool"
-    description = (
+    name:str  = "Internshala Auto Apply Tool"
+    description:str = (
         "Logs into Internshala visibly and applies to jobs listed in scraped_jobs.json. "
         "Reads job metadata like title, company, and similarity score."
     )
@@ -53,7 +53,6 @@ class InternshalaApplyTool(BaseTool):
 
         time.sleep(5)
 
-        # Load job data
         if not os.path.exists("ranked.json"):
             driver.quit()
             return "⚠️ scraped_jobs.json not found."

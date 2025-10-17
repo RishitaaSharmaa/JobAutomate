@@ -1,29 +1,27 @@
 [
   {
-    "title": "Machine Learning Intern",
-    "company": "Tech Innovators Pvt Ltd",
-    "location": "Bangalore",
-    "stipend": "₹5000/month",
-    "duration": "3 months",
-    "link": "https://internshala.com/internships/machine-learning-internship/tech-innovators",
-    "similarity_score": 0.92
+    "title": "Data Science Intern",
+    "company": "ABC Analytics",
+    "similarity_score": 2
   },
   {
-    "title": "Data Science Intern",
-    "company": "DataMasters Solutions",
-    "location": "Hyderabad",
-    "stipend": "₹6000/month",
-    "duration": "4 months",
-    "link": "https://internshala.com/internships/data-science-internship/datamasters",
-    "similarity_score": 0.85
+    "title": "Machine Learning Intern",
+    "company": "XYZ Solutions",
+    "similarity_score": 1
+  },
+  {
+    "title": "Computer Vision Intern",
+    "company": "VisionTech",
+    "similarity_score": 1
+  },
+  {
+    "title": "NLP Intern",
+    "company": "LanguageAI",
+    "similarity_score": 1
   },
   {
     "title": "AI Research Intern",
-    "company": "NeuralNet Research",
-    "location": "Pune",
-    "stipend": "₹4500/month",
-    "duration": "2 months",
-    "link": "https://internshala.com/internships/ai-internship/neuralnet",
-    "similarity_score": 0.78
+    "company": "DeepMind Labs",
+    "similarity_score": 0
   }
 ]

@@ -31,9 +31,10 @@ filter_task = Task(
 resume_path="Rishita_Sharma.pdf"
 Apply_task = Task(
     description=(
+        "Login into internshala account using the credentials. "
         f"Use 'ranked.json' to apply to internships. "
         f"For each listing, open the application link and upload '{resume_path}'. "
-        "If file upload fails, generate a short professional email."
+        "Show the whole automation procces"
     ),
     expected_output="JSON list of jobs where resume gets uploaded successfully.",
     tools=[apply_tool],

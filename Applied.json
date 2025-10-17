@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "title": "Data Science Intern",
+    "company": "ABC Analytics"
+  },
+  {
+    "title": "Machine Learning Intern",
+    "company": "XYZ Solutions"
+  },
+  {
+    "title": "Computer Vision Intern",
+    "company": "VisionTech"
+  },
+  {
+    "title": "NLP Intern",
+    "company": "LanguageAI"
+  }
+]
