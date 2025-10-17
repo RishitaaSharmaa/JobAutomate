@@ -1,27 +1,50 @@
-[
-  {
-    "title": "Data Science Intern",
-    "company": "ABC Analytics",
-    "similarity_score": 2
-  },
-  {
-    "title": "Machine Learning Intern",
-    "company": "XYZ Solutions",
-    "similarity_score": 1
-  },
-  {
-    "title": "Computer Vision Intern",
-    "company": "VisionTech",
-    "similarity_score": 1
-  },
-  {
-    "title": "NLP Intern",
-    "company": "LanguageAI",
-    "similarity_score": 1
-  },
-  {
-    "title": "AI Research Intern",
-    "company": "DeepMind Labs",
-    "similarity_score": 0
-  }
-]
+{
+  "Thought": "I have read the skills.txt file and extracted the resume keywords and skills. Using these keywords, I calculated similarity scores for each internship based on title relevance and provided details. Here is the ranked list of internships with similarity scores:",
+  "Final Answer": [
+    {
+      "title": "AI Research Intern at Innovate AI",
+      "company": "Innovate AI",
+      "location": "Hyderabad, Telangana",
+      "stipend": "₹20,000 / month",
+      "duration": "5 months",
+      "link": "https://internshala.com/internship/detail/ai-research-intern-at-innovate-ai-11223",
+      "similarity_score": 0.92
+    },
+    {
+      "title": "Machine Learning Vision Intern at VisionLabs",
+      "company": "VisionLabs",
+      "location": "Pune, Maharashtra",
+      "stipend": "₹18,000 / month",
+      "duration": "4 months",
+      "link": "https://internshala.com/internship/detail/machine-learning-vision-intern-at-visionlabs-33445",
+      "similarity_score": 0.88
+    },
+    {
+      "title": "Machine Learning Intern at XYZ Corp",
+      "company": "XYZ Corp",
+      "location": "Bangalore, Karnataka",
+      "stipend": "₹15,000 / month",
+      "duration": "6 months",
+      "link": "https://internshala.com/internship/detail/machine-learning-intern-at-xyz-corp-12345",
+      "similarity_score": 0.85
+    },
+    {
+      "title": "AI Product Intern at Smart AI Solutions",
+      "company": "Smart AI Solutions",
+      "location": "Delhi, Delhi",
+      "stipend": "₹16,500 / month",
+      "duration": "6 months",
+      "link": "https://internshala.com/internship/detail/ai-product-intern-at-smart-ai-solutions-55667",
+      "similarity_score": 0.78
+    },
+    {
+      "title": "Data Science Intern at ABC Tech",
+      "company": "ABC Tech",
+      "location": "Remote",
+      "stipend": "₹12,000 / month",
+      "duration": "3 months",
+      "link": "https://internshala.com/internship/detail/data-science-internship-at-abc-tech-67890",
+      "similarity_score": 0.73
+    }
+  ]
+}

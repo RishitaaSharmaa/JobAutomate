@@ -128,7 +128,7 @@ class InternshalaApplyTool(BaseTool):
 
 file_read_tool = FileReadTool(file_path='skills.txt')
 
-search_tool = ScrapeWebsiteTool(website_url="https://internshala.com/internships/machine-learning-internship")
+search_tool = SeleniumScrapingTool(website_url="https://internshala.com/internships/machine-learning-internship")
 
-apply_tool=InternshalaApplyTool()
+# apply_tool=InternshalaApplyTool()
 

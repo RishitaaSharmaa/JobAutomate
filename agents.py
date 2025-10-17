@@ -29,11 +29,11 @@ Filter_agent = Agent(
     allow_delegation=False,
 )
 
-Apply_agent = Agent(
-    role="Job Applier",
-    goal="Apply to the ranked jobs with a tailored professional message.",
-    backstory="A reliable virtual assistant applying accurately and professionally.",
-    verbose=False,
-    llm=llm,
-    allow_delegation=False,
-)
+# Apply_agent = Agent(
+#     role="Job Applier",
+#     goal="Apply to the ranked jobs with a tailored professional message.",
+#     backstory="A reliable virtual assistant applying accurately and professionally.",
+#     verbose=False,
+#     llm=llm,
+#     allow_delegation=False,
+# )
