@@ -102,17 +102,16 @@ class InternshalaApplyTool(BaseTool):
                         "I look forward to contributing effectively.\n\nBest regards,\nRishita Sharma"
                     )
                 except:
-                    print("✍️ No textarea found, skipping input.")
+                    print(" No textarea found, skipping input.")
 
-                # Click submit button
                 submit = driver.find_element(By.XPATH, "//button[contains(text(),'Submit application')]")
                 submit.click()
                 applied_count += 1
-                print(f"✅ Successfully applied to {title} at {company}.")
+                print(f"✅Successfully applied to {title} at {company}.")
                 time.sleep(3)
 
             except Exception as e:
-                print(f"❌ Failed to apply for {title} at {company}: {e}")
+                print(f"Failed to apply for {title} at {company}: {e}")
                 failed_jobs.append({"title": title, "company": company, "error": str(e)})
 
         driver.quit()
@@ -123,7 +122,7 @@ class InternshalaApplyTool(BaseTool):
             "failed": len(failed_jobs),
         }
 
-        return f"\n🎯 Process finished.\nApplied: {result['applied']}, Skipped: {result['skipped']}, Failed: {result['failed']}"
+        return f"\n Process finished.\nApplied: {result['applied']}, Skipped: {result['skipped']}, Failed: {result['failed']}"
 
 
 file_read_tool = FileReadTool(file_path='skills.txt')

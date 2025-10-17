@@ -1,7 +1,7 @@
 from agents import Webscrapingagent
 from crewai import Task
-from tools import search_tool, apply_tool, file_read_tool
-from agents import Filter_agent, Apply_agent
+from tools import search_tool, file_read_tool
+from agents import Filter_agent
 
 scrape_task = Task(
     description=(
