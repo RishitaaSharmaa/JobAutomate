@@ -10,7 +10,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from crewai_tools import ScrapegraphScrapeTool
 from dotenv import load_dotenv
 import os, json, time 
 import undetected_chromedriver as uc
@@ -55,7 +54,9 @@ class InternshalaLoginTool(BaseTool):
 
 file_read_tool = FileReadTool(file_path='skills.txt')
 
-search_tool = SeleniumScrapingTool(website_url="https://internshala.com/internships/machine-learning-internship")
+search_tool = ScrapeWebsiteTool(
+    website_url="https://internshala.com/internships/machine-learning-internship",
+    css_element=)
 
 class InternshalaApplyTool(BaseTool):
     name: str = "Internshala Apply Tool"
