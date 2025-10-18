@@ -1,15 +1,16 @@
 from agents import Webscrapingagent
 from crewai import Task
-from tools import search_tool, file_read_tool
-from agents import Filter_agent
+from tools import search_tool, file_read_tool, apply_tool,login_tool
+from agents import Filter_agent, Apply_agent
 
 scrape_task = Task(
     description=(
+        "Login into the user's account"
         "Scrape Internshala for Machine Learning, Data Science, and AI internships. "
-        "Extract job title, company, location, stipend, duration, and link."
+        "Return the details of the internship including a valid link of the internship."
     ),
     expected_output="JSON list of internships with details.",
-    tools=[search_tool],
+    tools=[login_tool,search_tool],
     agent=Webscrapingagent,
     output_file="webdata.json",
     async_execution=False,  
@@ -28,19 +29,18 @@ filter_task = Task(
 )
 
 
-# resume_path="Rishita_Sharma.pdf"
-# Apply_task = Task(
-#     description=(
-#         "Login into internshala account using the credentials. "
-#         f"Use 'ranked.json' to apply to internships. "
-#         f"For each listing, open the application link and upload '{resume_path}'. "
-#         "Show the whole automation procces"
-#     ),
-#     expected_output="JSON list of jobs where resume gets uploaded successfully.",
-#     tools=[apply_tool],
-#     agent=Apply_agent,
-#     context=[filter_task],
-#     output_file="Applied.json",
-#     async_execution=False,
-# )
+resume_path="Rishita_Sharma.pdf"
+Apply_task = Task(
+    description=(
+        f"Go to the link in ranked.json, and open the job. "
+        f"For each listing, upload '{resume_path} and submit'. "
+        "Show successful uploads"
+    ),
+    expected_output="JSON list of jobs where resume gets uploaded successfully.",
+    tools=[apply_tool],
+    agent=Apply_agent,
+    context=[filter_task],
+    output_file="Applied.json",
+    async_execution=False,
+)
 

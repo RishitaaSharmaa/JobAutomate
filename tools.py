@@ -10,124 +10,141 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from crewai_tools import ScrapegraphScrapeTool
 from dotenv import load_dotenv
 import os, json, time 
 import undetected_chromedriver as uc
+import undetected_chromedriver as uc
 
 load_dotenv()
-
-class InternshalaApplyTool(BaseTool):
-    name:str  = "Internshala Auto Apply Tool"
-    description:str = (
-        "Logs into Internshala visibly and applies to jobs listed in scraped_jobs.json. "
-        "Reads job metadata like title, company, and similarity score."
-    )
+scraper_api=os.getenv("SCRAPER")
+class InternshalaLoginTool(BaseTool):
+    name:str = "Internshala Login Tool"
+    description:str = "Logs into Internshala using credentials so scraping can happen in an authenticated session."
 
     def _run(self, *args, **kwargs):
         email = os.getenv("INTERN_EMAIL")
         password = os.getenv("INTERN_PASSWORD")
 
         if not email or not password:
-            return "⚠️ Missing credentials. Add INTERNSHALA_EMAIL and INTERNSHALA_PASSWORD to credentials.env"
+            return "⚠️ Missing login credentials in .env"
 
-        # Open visible Chrome browser
         chrome_options = Options()
-        chrome_options.add_experimental_option("detach", True)  # keeps window open
+        chrome_options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=chrome_options)
-        driver.maximize_window()
+        driver.get("https://internshala.com/login")
         wait = WebDriverWait(driver, 20)
 
-        driver.get("https://internshala.com/login")
         print("🌐 Opening Internshala login page...")
 
         try:
-            email_input = wait.until(EC.presence_of_element_located((By.ID, "email")))
-            password_input = driver.find_element(By.ID, "password")
-            email_input.send_keys(email)
-            password_input.send_keys(password)
+            email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
+            password_box = driver.find_element(By.ID, "password")
+            email_box.send_keys(email)
+            password_box.send_keys(password)
             driver.find_element(By.ID, "login_submit").click()
-            print("✅ Logged in successfully.")
+            print("✅ Logged in successfully!")
+
+            # keep browser open for scraping task
+            time.sleep(5)
+            return "✅ Login complete. Browser remains open for scraping."
+
         except Exception as e:
-            driver.quit()
             return f"❌ Login failed: {e}"
-
-        time.sleep(5)
-
-        if not os.path.exists("ranked.json"):
-            driver.quit()
-            return "⚠️ scraped_jobs.json not found."
-
-        with open("ranked.json", "r", encoding="utf-8") as f:
-            jobs = json.load(f)
-
-        applied_count = 0
-        skipped_jobs = []
-        failed_jobs = []
-
-        for job in jobs:
-            title = job.get("title", "Unknown Title")
-            company = job.get("company", "Unknown Company")
-            link = job.get("link")
-            score = job.get("similarity_score", 0)
-
-            if not link:
-                print(f"⚠️ Skipping job {title} — no link found.")
-                continue
-
-            # Skip jobs below threshold similarity
-            if score < 0.8:
-                print(f"⏩ Skipping {title} ({company}) — similarity {score}")
-                skipped_jobs.append(job)
-                continue
-
-            try:
-                print(f"\n🚀 Applying to {title} at {company}...")
-                driver.get(link)
-                time.sleep(4)
-
-                # Click "Apply Now"
-                apply_button = wait.until(
-                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Apply')]"))
-                )
-                apply_button.click()
-                time.sleep(2)
-
-                # Try to fill textarea
-                try:
-                    textarea = wait.until(EC.presence_of_element_located((By.TAG_NAME, "textarea")))
-                    textarea.clear()
-                    textarea.send_keys(
-                        f"Dear {company} team,\n\nI am excited to apply for the {title} position. "
-                        f"My background in machine learning and automation aligns closely with your requirements. "
-                        "I look forward to contributing effectively.\n\nBest regards,\nRishita Sharma"
-                    )
-                except:
-                    print(" No textarea found, skipping input.")
-
-                submit = driver.find_element(By.XPATH, "//button[contains(text(),'Submit application')]")
-                submit.click()
-                applied_count += 1
-                print(f"✅Successfully applied to {title} at {company}.")
-                time.sleep(3)
-
-            except Exception as e:
-                print(f"Failed to apply for {title} at {company}: {e}")
-                failed_jobs.append({"title": title, "company": company, "error": str(e)})
-
-        driver.quit()
-
-        result = {
-            "applied": applied_count,
-            "skipped": len(skipped_jobs),
-            "failed": len(failed_jobs),
-        }
-
-        return f"\n Process finished.\nApplied: {result['applied']}, Skipped: {result['skipped']}, Failed: {result['failed']}"
 
 
 file_read_tool = FileReadTool(file_path='skills.txt')
 
 search_tool = SeleniumScrapingTool(website_url="https://internshala.com/internships/machine-learning-internship")
 
-# apply_tool=InternshalaApplyTool()
+class InternshalaApplyTool(BaseTool):
+    name: str = "Internshala Apply Tool"
+    description: str = (
+        "Opens each internship link from ranked.json, uploads the given resume, and submits the application using Selenium."
+    )
+
+    def _run(self, *args, **kwargs):
+        ranked_file = kwargs.get("ranked_file", "ranked.json")
+        resume_path = kwargs.get("resume_path", "Rishita_Sharma.pdf")
+
+        if not os.path.exists(ranked_file):
+            return f"❌ {ranked_file} not found."
+        if not os.path.exists(resume_path):
+            return f"❌ Resume file '{resume_path}' not found."
+
+        # Load ranked internships
+        with open(ranked_file, "r", encoding="utf-8") as f:
+            ranked_jobs = json.load(f)
+
+        results = []
+
+        # Setup Selenium driver
+        chrome_options = Options()
+        chrome_options.add_experimental_option("detach", True)
+        driver = webdriver.Chrome(options=chrome_options)
+        wait = WebDriverWait(driver, 20)
+
+        for job in ranked_jobs:
+            job_title = job.get("title", "Unknown Job")
+            job_link = job.get("link")
+
+            if not job_link:
+                continue
+
+            try:
+                print(f"🔗 Opening {job_title} ...")
+                driver.get(job_link)
+
+                # Wait for and click the "Apply" button
+                apply_btn = wait.until(
+                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Apply')]"))
+                )
+                apply_btn.click()
+                time.sleep(2)
+
+                # Upload resume (if upload input exists)
+                upload_input = wait.until(
+                    EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
+                )
+                upload_input.send_keys(os.path.abspath(resume_path))
+                print(f"📄 Uploaded resume for {job_title}")
+
+                # Submit the application
+                submit_btn = wait.until(
+                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Submit')]"))
+                )
+                submit_btn.click()
+
+                print(f"✅ Successfully applied to {job_title}")
+                results.append({"job": job_title, "link": job_link, "status": "Applied"})
+
+                time.sleep(3)
+
+            except Exception as e:
+                print(f"⚠️ Failed for {job_title}: {e}")
+                results.append({
+                    "job": job_title,
+                    "link": job_link,
+                    "status": f"Failed - {str(e)}"
+                })
+                continue
+
+        driver.quit()
+
+        # Save results
+        with open("Applied.json", "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=4)
+
+        return results
+
+
+apply_tool = InternshalaApplyTool()
+
+
+# search_tool= ScrapegraphScrapeTool(
+#     api_key=scraper_api,
+#     website_url="https://internshala.com/internships/machine-learning-internship",
+#     user_prompt="Go to the view full description  "
+#    )
+login_tool=InternshalaLoginTool()
 

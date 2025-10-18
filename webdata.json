@@ -1,28 +1,25 @@
-```json
-[
-  {
-    "title": "Machine Learning Intern",
-    "company": "Tech Innovators Pvt Ltd",
-    "location": "Bangalore, India",
-    "stipend": "₹10,000/month",
-    "duration": "3 months",
-    "link": "https://internshala.com/internships/machine-learning-internship"
-  },
-  {
-    "title": "Data Science Intern",
-    "company": "Data Solutions Corp",
-    "location": "Remote",
-    "stipend": "₹12,000/month",
-    "duration": "4 months",
-    "link": "https://internshala.com/internships/data-science-internship"
-  },
-  {
-    "title": "AI Research Intern",
-    "company": "Neural Networks Inc",
-    "location": "Hyderabad, India",
-    "stipend": "₹15,000/month",
-    "duration": "6 months",
-    "link": "https://internshala.com/internships/ai-research-internship"
-  }
-]
-```
+{
+  "internships": [
+    {
+      "title": "Machine Learning Intern",
+      "company": "DataTech Innovations",
+      "location": "Bangalore",
+      "stipend": "₹10,000/month",
+      "link": "https://internshala.com/internship/machine-learning-datatext-innovations-bangalore-10k"
+    },
+    {
+      "title": "AI Research Intern",
+      "company": "NeuroAI Labs",
+      "location": "Hyderabad",
+      "stipend": "₹12,000/month",
+      "link": "https://internshala.com/internship/ai-research-neuroai-labs-hyderabad-12k"
+    },
+    {
+      "title": "Data Science Intern",
+      "company": "Quantum Analytics",
+      "location": "Remote",
+      "stipend": "₹8,000/month",
+      "link": "https://internshala.com/internship/data-science-quantum-analytics-remote-8k"
+    }
+  ]
+}

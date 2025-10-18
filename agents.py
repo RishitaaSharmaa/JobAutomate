@@ -13,7 +13,7 @@ llm = ChatGroq(
 
 Webscrapingagent = Agent(
     role="Job Finder",
-    goal="Find ML/AI internship listings with title, company, location, stipend, and link.",
+    goal="Login into user's accoutn and find ML/AI internship listings with title, company, location, stipend, and link.",
     backstory="An efficient recruiter skilled in scraping tech internship data.",
     verbose=False,
     llm=llm,
@@ -29,11 +29,11 @@ Filter_agent = Agent(
     allow_delegation=False,
 )
 
-# Apply_agent = Agent(
-#     role="Job Applier",
-#     goal="Apply to the ranked jobs with a tailored professional message.",
-#     backstory="A reliable virtual assistant applying accurately and professionally.",
-#     verbose=False,
-#     llm=llm,
-#     allow_delegation=False,
-# )
+Apply_agent = Agent(
+    role="Job Applier",
+    goal="Apply to the ranked jobs with a tailored professional message.",
+    backstory="A reliable virtual assistant applying accurately and professionally",
+    verbose=False,
+    llm=llm,
+    allow_delegation=False,
+)
