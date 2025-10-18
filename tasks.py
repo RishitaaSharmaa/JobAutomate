@@ -6,10 +6,9 @@ from agents import Filter_agent, Apply_agent
 scrape_task = Task(
     description=(
         "Login into the user's account using login tool"
-        "Scrape Internshala for Machine Learning, Data Science, and AI internships using search tool. "
-        "Return the details of the internship including a valid link of the internship."
+        "Scrape Internshala for Machine Learning internships using search tool. "
     ),
-    expected_output="JSON list of internships with details.",
+    expected_output="JSON list of internships with details including link to the internship.",
     tools=[login_tool,search_tool],
     agent=Webscrapingagent,
     output_file="webdata.json",
