@@ -14,19 +14,22 @@ from dotenv import load_dotenv
 import os, json, time 
 import undetected_chromedriver as uc
 import undetected_chromedriver as uc
+from selenium.webdriver.common.keys import Keys
 
 load_dotenv()
 scraper_api=os.getenv("SCRAPER")
+
 class InternshalaLoginTool(BaseTool):
-    name:str = "Internshala Login Tool"
-    description:str = "Logs into Internshala using credentials so scraping can happen in an authenticated session."
+    name: str = "Internshala Login Tool"
+    description: str = "Logs into Internshala using user-provided credentials, typing slowly to avoid CAPTCHA."
 
     def _run(self, *args, **kwargs):
-        email = os.getenv("INTERN_EMAIL")
-        password = os.getenv("INTERN_PASSWORD")
+        # Ask for credentials instead of .env
+        email = input("📧 Enter your Internshala email: ").strip()
+        password = input("🔒 Enter your Internshala password: ").strip()
 
         if not email or not password:
-            return "⚠️ Missing login credentials in .env"
+            return "⚠️ Email or password not provided."
 
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
@@ -39,24 +42,36 @@ class InternshalaLoginTool(BaseTool):
         try:
             email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
             password_box = driver.find_element(By.ID, "password")
-            email_box.send_keys(email)
-            password_box.send_keys(password)
-            driver.find_element(By.ID, "login_submit").click()
-            print("✅ Logged in successfully!")
 
-            # keep browser open for scraping task
-            time.sleep(5)
-            return "✅ Login complete. Browser remains open for scraping."
+            # ⌨️ Type email slowly
+            for char in email:
+                email_box.send_keys(char)
+                time.sleep(0.2)  # typing delay
+
+            # ⌨️ Type password slowly
+            for char in password:
+                password_box.send_keys(char)
+                time.sleep(0.25)  # slightly longer for realism
+
+            # Submit login
+            driver.find_element(By.ID, "login_submit").click()
+            print("✅ Submitted credentials. Solve CAPTCHA manually if prompted...")
+
+            # Allow user to solve CAPTCHA if needed
+            time.sleep(20)
+            print("✅ Login complete. Browser remains open for scraping session.")
+
+            return "✅ Logged in successfully and browser ready for scraping."
 
         except Exception as e:
+            print(f"❌ Login failed: {e}")
             return f"❌ Login failed: {e}"
 
 
 file_read_tool = FileReadTool(file_path='skills.txt')
 
 search_tool = ScrapeWebsiteTool(
-    website_url="https://internshala.com/internships/machine-learning-internship",
-    css_element=)
+    website_url="https://internshala.com/internships/machine-learning-internship")
 
 class InternshalaApplyTool(BaseTool):
     name: str = "Internshala Apply Tool"
