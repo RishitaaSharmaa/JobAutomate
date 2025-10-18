@@ -22,12 +22,11 @@ class InternshalaLoginTool(BaseTool):
     description: str = "Logs into Internshala using user-provided credentials, typing slowly to avoid CAPTCHA."
 
     def _run(self, *args, **kwargs):
-        # Ask for credentials instead of .env
         email = os.getenv("INTERN_EMAIL")
         password = os.getenv("INTERN_PASSWORD")
 
         if not email or not password:
-            return "⚠️ Email or password not provided."
+            return " Email or password not provided."
 
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
@@ -35,7 +34,7 @@ class InternshalaLoginTool(BaseTool):
         driver.get("https://internshala.com/login")
         wait = WebDriverWait(driver, 20)
 
-        print("🌐 Opening Internshala login page...")
+        print(" Opening Internshala login page...")
 
         try:
             email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
@@ -50,16 +49,16 @@ class InternshalaLoginTool(BaseTool):
                 time.sleep(0.25)  
 
             driver.find_element(By.ID, "login_submit").click()
-            print("✅ Submitted credentials. Solve CAPTCHA manually if prompted...")
+            print(" Submitted credentials. Solve CAPTCHA manually if prompted...")
 
             time.sleep(20)
-            print("✅ Login complete. Browser remains open for scraping session.")
+            print(" Login complete. Browser remains open for scraping session.")
 
-            return "✅ Logged in successfully and browser ready for scraping."
+            return " Logged in successfully and browser ready for scraping."
 
         except Exception as e:
-            print(f"❌ Login failed: {e}")
-            return f"❌ Login failed: {e}"
+            print(f" Login failed: {e}")
+            return f" Login failed: {e}"
 
 
 file_read_tool = FileReadTool(file_path='skills.txt')
@@ -100,7 +99,7 @@ class InternshalaApplyTool(BaseTool):
                 continue
 
             try:
-                print(f"🔗 Opening {job_title} ...")
+                print(f" Opening {job_title} ...")
                 driver.get(job_link)
 
                 apply_btn = wait.until(
@@ -109,14 +108,12 @@ class InternshalaApplyTool(BaseTool):
                 apply_btn.click()
                 time.sleep(2)
 
-                # Upload resume (if upload input exists)
                 upload_input = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
                 )
                 upload_input.send_keys(os.path.abspath(resume_path))
                 print(f" Uploaded resume for {job_title}")
 
-                # Submit the application
                 submit_btn = wait.until(
                     EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Submit')]"))
                 )
@@ -128,7 +125,7 @@ class InternshalaApplyTool(BaseTool):
                 time.sleep(3)
 
             except Exception as e:
-                print(f"⚠️ Failed for {job_title}: {e}")
+                print(f" Failed for {job_title}: {e}")
                 results.append({
                     "job": job_title,
                     "link": job_link,
@@ -142,7 +139,6 @@ class InternshalaApplyTool(BaseTool):
             json.dump(results, f, indent=4)
 
         return results
-
 
 apply_tool = InternshalaApplyTool()
 login_tool=InternshalaLoginTool()
