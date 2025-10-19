@@ -15,56 +15,78 @@ import undetected_chromedriver as uc
 from selenium.webdriver.common.keys import Keys
 
 load_dotenv()
-scraper_api=os.getenv("SCRAPER")
-
 class InternshalaLoginTool(BaseTool):
     name: str = "Internshala Login Tool"
-    description: str = "Logs into Internshala using user-provided credentials, typing slowly to avoid CAPTCHA."
+    description: str = "Logs into Internshala and stores the Selenium driver for reuse."
 
-    def _run(self, *args, **kwargs):
+    def _run(self, context=None, *args, **kwargs):
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+        import time, os
+
         email = os.getenv("INTERN_EMAIL")
         password = os.getenv("INTERN_PASSWORD")
-
-        if not email or not password:
-            return " Email or password not provided."
 
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=chrome_options)
         driver.get("https://internshala.com/login")
+
         wait = WebDriverWait(driver, 20)
+        email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
+        password_box = driver.find_element(By.ID, "password")
 
-        print(" Opening Internshala login page...")
+        for c in email:
+            email_box.send_keys(c)
+            time.sleep(0.1)
+        for c in password:
+            password_box.send_keys(c)
+            time.sleep(0.1)
+        driver.find_element(By.ID, "login_submit").click()
 
-        try:
-            email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
-            password_box = driver.find_element(By.ID, "password")
+        print("✅ Logged in. Solve CAPTCHA if prompted.")
+        time.sleep(20)
 
-            for char in email:
-                email_box.send_keys(char)
-                time.sleep(0.2)  
+        # 🧠 Store driver in CrewAI context so the next tool can access it
+        if context is not None:
+            context["driver"] = driver
 
-            for char in password:
-                password_box.send_keys(char)
-                time.sleep(0.25)  
-
-            driver.find_element(By.ID, "login_submit").click()
-            print(" Submitted credentials. Solve CAPTCHA manually if prompted...")
-
-            time.sleep(20)
-            print(" Login complete. Browser remains open for scraping session.")
-
-            return " Logged in successfully and browser ready for scraping."
-
-        except Exception as e:
-            print(f" Login failed: {e}")
-            return f" Login failed: {e}"
-
+        return "Login successful and driver stored in context."
 
 file_read_tool = FileReadTool(file_path='skills.txt')
 
-search_tool = ScrapeWebsiteTool(
-    website_url="https://internshala.com/internships/machine-learning-internship")
+class ScrapeWebsiteTool(BaseTool):
+    name: str = "Internshala Scraper Tool"
+    description: str = "Scrapes internships using an existing logged-in browser session."
+
+    def _run(self, context=None, website_url=None, *args, **kwargs):
+        driver = None
+
+        # 🧠 Reuse driver from login tool
+        if context and "driver" in context:
+            driver = context["driver"]
+
+        if not driver:
+            return "⚠️ No driver found. Make sure login_tool ran first."
+
+        try:
+            print(f"🌐 Navigating to {website_url} ...")
+            driver.get(website_url)
+            time.sleep(5)
+
+            internships = driver.find_elements(By.CLASS_NAME, "heading_4_5")
+            data = [i.text for i in internships if i.text.strip()]
+
+            return {"internships": data}
+
+        except Exception as e:
+            print(f"❌ Scraping failed: {e}")
+            return str(e)
+
+
 
 class InternshalaApplyTool(BaseTool):
     name: str = "Internshala Apply Tool"
@@ -139,7 +161,15 @@ class InternshalaApplyTool(BaseTool):
             json.dump(results, f, indent=4)
 
         return results
+    
+login_tool=InternshalaLoginTool()
+success=login_tool.run()
+print(success)    
+search_tool = ScrapeWebsiteTool(
+    website_url="https://internshala.com/internships/machine-learning-internship"
+    )
+text=search_tool.run()
+print(text)
+
 
 apply_tool = InternshalaApplyTool()
-login_tool=InternshalaLoginTool()
-
