@@ -84,7 +84,7 @@ class ScrapeWebsiteTool(BaseTool):
             return {"internships": data}
 
         except Exception as e:
-            print(f"❌ Scraping failed: {e}")
+            print(f" Scraping failed: {e}")
             return str(e)
 
 
@@ -101,7 +101,6 @@ class InternshalaApplyTool(BaseTool):
         ranked_file = kwargs.get("ranked_file", "ranked.json")
         resume_path = kwargs.get("resume_path", "Rishita_Sharma.pdf")
 
-        # ✅ Pre-checks
         if driver is None:
             return "⚠️ No active driver found. Please run the login tool first."
         if not os.path.exists(ranked_file):
@@ -142,7 +141,6 @@ class InternshalaApplyTool(BaseTool):
                 upload_input.send_keys(os.path.abspath(resume_path))
                 print(f"📄 Uploaded resume for {job_title}")
 
-                # Click Submit
                 submit_btn = wait.until(
                     EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Submit')]"))
                 )
@@ -166,7 +164,6 @@ class InternshalaApplyTool(BaseTool):
                 })
                 continue
 
-        # ⚠️ Do not quit the driver — keep session active
         with open("Applied.json", "w", encoding="utf-8") as f:
             json.dump(results, f, indent=4)
 
