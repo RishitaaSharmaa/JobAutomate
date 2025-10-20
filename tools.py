@@ -27,13 +27,13 @@ class InternshalaLoginTool(BaseTool):
         password = os.getenv("INTERN_PASSWORD")
 
         if not email or not password:
-            return "⚠️ Missing credentials in environment variables."
+            return " Missing credentials in environment variables."
 
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=chrome_options)
 
-        print("🔄 Opening Internshala login page...")
+        print("Opening Internshala login page...")
         driver.get("https://internshala.com/login")
 
         try:
@@ -49,14 +49,14 @@ class InternshalaLoginTool(BaseTool):
                 time.sleep(0.1)
 
             driver.find_element(By.ID, "login_submit").click()
-            print("✅ Submitted credentials. Solve CAPTCHA if prompted...")
+            print("Submitted credentials. Solve CAPTCHA if prompted...")
             time.sleep(20)
 
             print("🎉 Login successful. Browser remains open.")
             return "Login successful. Global driver initialized."
 
         except Exception as e:
-            print(f"❌ Login failed: {e}")
+            print(f" Login failed: {e}")
             return f"Login failed: {e}"
 
 
@@ -68,19 +68,19 @@ class ScrapeWebsiteTool(BaseTool):
         global driver
 
         if driver is None:
-            return "⚠️ No global driver found. Please run the login tool first."
+            return "No global driver found. Please run the login tool first."
 
-        website_url = "https://internshala.com/internships/machine-learning-internship"  # ✅ Fixed URL
+        website_url = "https://internshala.com/internships/machine-learning-internship"  
 
         try:
-            print(f"🌐 Navigating to {website_url} ...")
+            print(f"Navigating to {website_url} ...")
             driver.get(website_url)
             time.sleep(5)
 
             internships = driver.find_elements(By.CLASS_NAME, "heading_4_5")
             data = [i.text for i in internships if i.text.strip()]
 
-            print(f"✅ Found {len(data)} internships.")
+            print(f"Found {len(data)} internships.")
             return {"internships": data}
 
         except Exception as e:
@@ -102,11 +102,11 @@ class InternshalaApplyTool(BaseTool):
         resume_path = kwargs.get("resume_path", "Rishita_Sharma.pdf")
 
         if driver is None:
-            return "⚠️ No active driver found. Please run the login tool first."
+            return "No active driver found. Please run the login tool first."
         if not os.path.exists(ranked_file):
-            return f"⚠️ {ranked_file} not found."
+            return f"{ranked_file} not found."
         if not os.path.exists(resume_path):
-            return f"⚠️ Resume file '{resume_path}' not found."
+            return f" Resume file '{resume_path}' not found."
 
         with open(ranked_file, "r", encoding="utf-8") as f:
             ranked_jobs = json.load(f)
@@ -123,29 +123,27 @@ class InternshalaApplyTool(BaseTool):
                 continue
 
             try:
-                print(f"🟢 Opening {job_title} ...")
+                print(f"Opening {job_title} ...")
                 driver.get(job_link)
                 time.sleep(3)
 
-                # Click the Apply button
                 apply_btn = wait.until(
                     EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Apply')]"))
                 )
                 apply_btn.click()
                 time.sleep(2)
 
-                # Upload resume
                 upload_input = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
                 )
                 upload_input.send_keys(os.path.abspath(resume_path))
-                print(f"📄 Uploaded resume for {job_title}")
+                print(f"Uploaded resume for {job_title}")
 
                 submit_btn = wait.until(
                     EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Submit')]"))
                 )
                 submit_btn.click()
-                print(f"✅ Successfully applied to {job_title}")
+                print(f"Successfully applied to {job_title}")
 
                 results.append({
                     "job": job_title,
@@ -156,7 +154,7 @@ class InternshalaApplyTool(BaseTool):
                 time.sleep(3)
 
             except Exception as e:
-                print(f"❌ Failed for {job_title}: {e}")
+                print(f"Failed for {job_title}: {e}")
                 results.append({
                     "job": job_title,
                     "link": job_link,
