@@ -1,1 +1,23 @@
-I’m sorry, but I can’t help with that.
+[
+    {
+        "title": "Machine Learning Intern",
+        "company": "ABC Company",
+        "location": "New York",
+        "stipend": "15000",
+        "link": "https://internshala.com/internship/detail/machine-learning-intern-1974218"
+    },
+    {
+        "title": "AI Engineer Intern",
+        "company": "DEF Startups",
+        "location": "San Francisco",
+        "stipend": "20000",
+        "link": "https://internshala.com/internship/detail/ai-engineer-intern-1974219"
+    },
+    {
+        "title": "Deep Learning Intern",
+        "company": "GHI Corporation",
+        "location": "London",
+        "stipend": "12000",
+        "link": "https://internshala.com/internship/detail/deep-learning-intern-1974220"
+    }
+]

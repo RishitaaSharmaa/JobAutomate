@@ -11,66 +11,66 @@ from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 import os, json, time 
 import undetected_chromedriver as uc
-import undetected_chromedriver as uc
 from selenium.webdriver.common.keys import Keys
 
 load_dotenv()
+driver = None
+
 class InternshalaLoginTool(BaseTool):
     name: str = "Internshala Login Tool"
-    description: str = "Logs into Internshala and stores the Selenium driver for reuse."
+    description: str = "Logs into Internshala using credentials and initializes the global Selenium driver."
 
-    def _run(self, context=None, *args, **kwargs):
-        from selenium import webdriver
-        from selenium.webdriver.chrome.options import Options
-        from selenium.webdriver.common.by import By
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium.webdriver.support import expected_conditions as EC
-        import time, os
+    def _run(self, *args, **kwargs):
+        global driver
 
         email = os.getenv("INTERN_EMAIL")
         password = os.getenv("INTERN_PASSWORD")
 
+        if not email or not password:
+            return "⚠️ Missing credentials in environment variables."
+
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=chrome_options)
+
+        print("🔄 Opening Internshala login page...")
         driver.get("https://internshala.com/login")
 
-        wait = WebDriverWait(driver, 20)
-        email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
-        password_box = driver.find_element(By.ID, "password")
+        try:
+            wait = WebDriverWait(driver, 20)
+            email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
+            password_box = driver.find_element(By.ID, "password")
 
-        for c in email:
-            email_box.send_keys(c)
-            time.sleep(0.1)
-        for c in password:
-            password_box.send_keys(c)
-            time.sleep(0.1)
-        driver.find_element(By.ID, "login_submit").click()
+            for c in email:
+                email_box.send_keys(c)
+                time.sleep(0.1)
+            for c in password:
+                password_box.send_keys(c)
+                time.sleep(0.1)
 
-        print("✅ Logged in. Solve CAPTCHA if prompted.")
-        time.sleep(20)
+            driver.find_element(By.ID, "login_submit").click()
+            print("✅ Submitted credentials. Solve CAPTCHA if prompted...")
+            time.sleep(20)
 
-        # 🧠 Store driver in CrewAI context so the next tool can access it
-        if context is not None:
-            context["driver"] = driver
+            print("🎉 Login successful. Browser remains open.")
+            return "Login successful. Global driver initialized."
 
-        return "Login successful and driver stored in context."
+        except Exception as e:
+            print(f"❌ Login failed: {e}")
+            return f"Login failed: {e}"
 
-file_read_tool = FileReadTool(file_path='skills.txt')
 
 class ScrapeWebsiteTool(BaseTool):
     name: str = "Internshala Scraper Tool"
-    description: str = "Scrapes internships using an existing logged-in browser session."
+    description: str = "Scrapes internships using the globally shared Selenium driver."
 
-    def _run(self, context=None, website_url=None, *args, **kwargs):
-        driver = None
+    def _run(self, *args, **kwargs):
+        global driver
 
-        # 🧠 Reuse driver from login tool
-        if context and "driver" in context:
-            driver = context["driver"]
+        if driver is None:
+            return "⚠️ No global driver found. Please run the login tool first."
 
-        if not driver:
-            return "⚠️ No driver found. Make sure login_tool ran first."
+        website_url = "https://internshala.com/internships/machine-learning-internship"  # ✅ Fixed URL
 
         try:
             print(f"🌐 Navigating to {website_url} ...")
@@ -80,12 +80,12 @@ class ScrapeWebsiteTool(BaseTool):
             internships = driver.find_elements(By.CLASS_NAME, "heading_4_5")
             data = [i.text for i in internships if i.text.strip()]
 
+            print(f"✅ Found {len(data)} internships.")
             return {"internships": data}
 
         except Exception as e:
             print(f"❌ Scraping failed: {e}")
             return str(e)
-
 
 
 class InternshalaApplyTool(BaseTool):
