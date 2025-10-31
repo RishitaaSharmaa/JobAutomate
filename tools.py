@@ -50,15 +50,14 @@ class InternshalaLoginTool(BaseTool):
 
             driver.find_element(By.ID, "login_submit").click()
             print("Submitted credentials. Solve CAPTCHA if prompted...")
-            time.sleep(20)
+            time.sleep(10)
 
-            print("🎉 Login successful. Browser remains open.")
+            print(" Login successful. Browser remains open.")
             return "Login successful. Global driver initialized."
 
         except Exception as e:
             print(f" Login failed: {e}")
             return f"Login failed: {e}"
-
 
 class ScrapeWebsiteTool(BaseTool):
     name: str = "Internshala Scraper Tool"
@@ -70,23 +69,72 @@ class ScrapeWebsiteTool(BaseTool):
         if driver is None:
             return "No global driver found. Please run the login tool first."
 
-        website_url = "https://internshala.com/internships/machine-learning-internship"  
+        website_url = "https://internshala.com/internships/machine-learning-internship"
 
         try:
             print(f"Navigating to {website_url} ...")
             driver.get(website_url)
-            time.sleep(5)
+            time.sleep(10)
 
-            internships = driver.find_elements(By.CLASS_NAME, "heading_4_5")
-            data = [i.text for i in internships if i.text.strip()]
+            # Scroll for lazy-loaded content
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(2)
 
-            print(f"Found {len(data)} internships.")
-            return {"internships": data}
+            # Locate internships - match any div with 'individual_internship'
+            containers = driver.find_elements(By.XPATH, "//div[contains(@class, 'individual_internship')]")
+            print(f"Found {len(containers)} internship containers")
+
+            internships_data = []
+
+            for container in containers:
+                # Extract title
+                title = ""
+                for tag in ["h3", "h4", "h5"]:
+                    els = container.find_elements(By.TAG_NAME, tag)
+                    if els and els[0].text.strip():
+                        title = els[0].text.strip()
+                        break
+                if not title:
+                    strongs = container.find_elements(By.TAG_NAME, "strong")
+                    if strongs and strongs[0].text:
+                        title = strongs[0].text.strip()
+
+                # Extract company
+                company = ""
+                possible = container.find_elements(By.XPATH, ".//span | .//div")
+                for p in possible:
+                    tx = p.text.strip()
+                    if tx and len(tx) < 64 and (
+                        "Pvt" in tx or "Ltd" in tx or "Limited" in tx or "Private" in tx
+                    ):
+                        company = tx
+                        break
+                if not company and possible:
+                    company = possible[0].text.strip()
+
+                # Extract link
+                link = ""
+                anchors = container.find_elements(By.TAG_NAME, "a")
+                for a in anchors:
+                    href = a.get_attribute("href")
+                    if href and "internship/detail" in href:
+                        link = href
+                        break
+
+                internships_data.append({
+                    "title": title,
+                    "company": company,
+                    "link": link
+                })
+
+            print(f"Successfully extracted {len(internships_data)} internships")
+            return {"internships": internships_data}
 
         except Exception as e:
-            print(f" Scraping failed: {e}")
-            return str(e)
-
+            print(f"Scraping failed: {e}")
+            with open("debug_internshala.html", "w", encoding="utf-8") as f:
+                f.write(driver.page_source)
+            return {"internships": [], "error": str(e)}
 
 
 class InternshalaApplyTool(BaseTool):
