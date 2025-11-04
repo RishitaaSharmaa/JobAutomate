@@ -1,23 +1,54 @@
+```
 [
     {
-        "title": "Machine Learning Intern",
-        "company": "ABC Company",
-        "location": "New York",
-        "stipend": "15000",
-        "link": "https://internshala.com/internship/detail/machine-learning-intern-1974218"
+        "title": "AI Agent Development",
+        "company": "Rugas Technologies Private Limited",
+        "link": "https://internshala.com/internship/detail/ai-agent-development-internship-in-bangalore-at-rugas-technologies-private-limited1761304873"
     },
     {
-        "title": "AI Engineer Intern",
-        "company": "DEF Startups",
-        "location": "San Francisco",
-        "stipend": "20000",
-        "link": "https://internshala.com/internship/detail/ai-engineer-intern-1974219"
+        "title": "Artificial Intelligence (AI)",
+        "company": "IntelliSQR",
+        "link": "https://internshala.com/internship/detail/artificial-intelligence-ai-internship-in-multiple-locations-at-intellisqr1761216558"
     },
     {
-        "title": "Deep Learning Intern",
-        "company": "GHI Corporation",
-        "location": "London",
-        "stipend": "12000",
-        "link": "https://internshala.com/internship/detail/deep-learning-intern-1974220"
+        "title": "AI/ML Engineer (Model Training & Experimentation)",
+        "company": "Marpu Foundation",
+        "link": "https://internshala.com/internship/detail/work-from-home-ai-ml-engineer-model-training-experimentation-internship-at-marpu-foundation1761568931"
+    },
+    {
+        "title": "Software Evaluation Developer",
+        "company": "Codefeast",
+        "link": "https://internshala.com/internship/detail/work-from-home-software-evaluation-developer-internship-at-codefeast1761627445"
+    },
+    {
+        "title": "Machine Learning",
+        "company": "ESSI Integrated Technologies",
+        "link": "https://internshala.com/internship/detail/machine-learning-internship-in-delhi-at-essi-integrated-technologies1762153930"
+    },
+    {
+        "title": "Python Development",
+        "company": "Megaminds IT Services",
+        "link": "https://internshala.com/internship/detail/work-from-home-python-development-internship-at-megaminds-it-services1761722125"
+    },
+    {
+        "title": "Data Science",
+        "company": "Mindenious Edutech",
+        "link": "https://internshala.com/internship/detail/work-from-home-part-time-data-science-internship-at-mindenious-edutech1761737068"
+    },
+    {
+        "title": "Full Stack Development",
+        "company": "DERIVED MIND TECHNOLOGIES PRIVATE LIMITED",
+        "link": "https://internshala.com/internship/detail/work-from-home-full-stack-development-internship-at-derived-mind-technologies-private-limited1762159226"
+    },
+    {
+        "title": "Full Stack Development",
+        "company": "Renan Partners",
+        "link": "https://internshala.com/internship/detail/work-from-home-full-stack-development-internship-at-renan-partners1762164643"
+    },
+    {
+        "title": "Computer Vision",
+        "company": "KasperTech",
+        "link": "https://internshala.com/internship/detail/work-from-home-computer-vision-internship-at-kaspertech1762143293"
     }
 ]
+```

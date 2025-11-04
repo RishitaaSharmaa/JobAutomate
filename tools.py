@@ -1,4 +1,4 @@
-from crewai_tools import ScrapeWebsiteTool , FileReadTool 
+from crewai_tools import  FileReadTool 
 from crewai.tools import BaseTool
 from typing import Type
 from pydantic import BaseModel, Field
@@ -16,48 +16,43 @@ from selenium.webdriver.common.keys import Keys
 load_dotenv()
 driver = None
 
+
 class InternshalaLoginTool(BaseTool):
     name: str = "Internshala Login Tool"
-    description: str = "Logs into Internshala using credentials and initializes the global Selenium driver."
+    description: str = (
+        "Opens the Internshala login page and waits for the user to log in manually "
+        "to avoid CAPTCHA issues. Initializes the global Selenium driver for reuse."
+    )
 
     def _run(self, *args, **kwargs):
         global driver
-
-        email = os.getenv("INTERN_EMAIL")
-        password = os.getenv("INTERN_PASSWORD")
-
-        if not email or not password:
-            return " Missing credentials in environment variables."
 
         chrome_options = Options()
         chrome_options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=chrome_options)
 
-        print("Opening Internshala login page...")
+        print("🚀 Opening Internshala login page...")
         driver.get("https://internshala.com/login")
 
+        print("\n🔑 Please log in manually in the browser window.")
+        print("⚠️ Solve any CAPTCHA if prompted.")
+        print("Once you are successfully logged in and your dashboard is visible, press ENTER here to continue...")
+
+        # Wait for user confirmation in console
+        input("👉 Press ENTER after you’ve logged in: ")
+
         try:
-            wait = WebDriverWait(driver, 20)
-            email_box = wait.until(EC.presence_of_element_located((By.ID, "email")))
-            password_box = driver.find_element(By.ID, "password")
-
-            for c in email:
-                email_box.send_keys(c)
-                time.sleep(0.1)
-            for c in password:
-                password_box.send_keys(c)
-                time.sleep(0.1)
-
-            driver.find_element(By.ID, "login_submit").click()
-            print("Submitted credentials. Solve CAPTCHA if prompted...")
-            time.sleep(10)
-
-            print(" Login successful. Browser remains open.")
-            return "Login successful. Global driver initialized."
-
+            # Verify login by checking if the dashboard/homepage is loaded
+            wait = WebDriverWait(driver, 60)
+            wait.until(
+                EC.presence_of_element_located((By.XPATH, "//a[contains(@href, '/internships')]"))
+            )
+            print("✅ Login detected. Global driver initialized successfully.")
+            return "Login successful. You may now use other tools with this driver."
         except Exception as e:
-            print(f" Login failed: {e}")
-            return f"Login failed: {e}"
+            return f"❌ Login verification failed: {e}"
+        
+
 
 class ScrapeWebsiteTool(BaseTool):
     name: str = "Internshala Scraper Tool"
@@ -140,26 +135,30 @@ class ScrapeWebsiteTool(BaseTool):
 class InternshalaApplyTool(BaseTool):
     name: str = "Internshala Apply Tool"
     description: str = (
-        "Uses the global logged-in Selenium driver to apply to each internship listed in ranked.json using the provided resume."
+        "Uses the global logged-in Selenium driver to apply to each internship listed in webdata.json using the provided resume."
     )
 
     def _run(self, *args, **kwargs):
         global driver
 
-        ranked_file = kwargs.get("ranked_file", "ranked.json")
+        ranked_file = kwargs.get("ranked_file", "webdata.json")
         resume_path = kwargs.get("resume_path", "Rishita_Sharma.pdf")
 
+        # Check global driver and file availability
         if driver is None:
             return "No active driver found. Please run the login tool first."
         if not os.path.exists(ranked_file):
             return f"{ranked_file} not found."
         if not os.path.exists(resume_path):
-            return f" Resume file '{resume_path}' not found."
+            return f"Resume file '{resume_path}' not found."
 
+        # Load internship data
         with open(ranked_file, "r", encoding="utf-8") as f:
-            ranked_jobs = json.load(f)
+            data = json.load(f)
 
-        driver = driver
+        # Extract the internship list safely
+        ranked_jobs = data.get("internships", [])
+
         wait = WebDriverWait(driver, 20)
         results = []
 
@@ -175,18 +174,21 @@ class InternshalaApplyTool(BaseTool):
                 driver.get(job_link)
                 time.sleep(3)
 
+                # Click "Apply" button
                 apply_btn = wait.until(
                     EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Apply')]"))
                 )
                 apply_btn.click()
                 time.sleep(2)
 
+                # Upload resume
                 upload_input = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
                 )
                 upload_input.send_keys(os.path.abspath(resume_path))
                 print(f"Uploaded resume for {job_title}")
 
+                # Click "Submit" button
                 submit_btn = wait.until(
                     EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Submit')]"))
                 )
@@ -210,21 +212,22 @@ class InternshalaApplyTool(BaseTool):
                 })
                 continue
 
+        # Save application log
         with open("Applied.json", "w", encoding="utf-8") as f:
             json.dump(results, f, indent=4)
 
         return results
 
     
-login_tool=InternshalaLoginTool()
-success=login_tool.run()
-print(success)    
+    
+login_tool=InternshalaLoginTool()    
+# login_tool.run()
+
 search_tool = ScrapeWebsiteTool(
     website_url="https://internshala.com/internships/machine-learning-internship"
     )
-text=search_tool.run()
-print(text)
-
+# search_tool.run()
 file_read_tool=FileReadTool(file_path="skills.txt")
 
 apply_tool = InternshalaApplyTool()
+# apply_tool.run()
