@@ -135,7 +135,8 @@ class ScrapeWebsiteTool(BaseTool):
 class InternshalaApplyTool(BaseTool):
     name: str = "Internshala Apply Tool"
     description: str = (
-        "Uses the global logged-in Selenium driver to apply to each internship listed in webdata.json using the provided resume."
+        "Uses the global logged-in Selenium driver to apply to each internship "
+        "listed in webdata.json by uploading the resume and clicking Submit."
     )
 
     def _run(self, *args, **kwargs):
@@ -144,22 +145,20 @@ class InternshalaApplyTool(BaseTool):
         ranked_file = kwargs.get("ranked_file", "webdata.json")
         resume_path = kwargs.get("resume_path", "Rishita_Sharma.pdf")
 
-        # Check global driver and file availability
+        # --- Validations ---
         if driver is None:
-            return "No active driver found. Please run the login tool first."
+            return "❌ No active driver found. Please run the login tool first."
         if not os.path.exists(ranked_file):
-            return f"{ranked_file} not found."
+            return f"❌ {ranked_file} not found."
         if not os.path.exists(resume_path):
-            return f"Resume file '{resume_path}' not found."
+            return f"❌ Resume file '{resume_path}' not found."
 
-        # Load internship data
+        # --- Load internship data ---
         with open(ranked_file, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        # Extract the internship list safely
         ranked_jobs = data.get("internships", [])
-
-        wait = WebDriverWait(driver, 20)
+        wait = WebDriverWait(driver, 25)
         results = []
 
         for job in ranked_jobs:
@@ -170,30 +169,37 @@ class InternshalaApplyTool(BaseTool):
                 continue
 
             try:
-                print(f"Opening {job_title} ...")
+                print(f"\n🚀 Opening {job_title} ...")
                 driver.get(job_link)
                 time.sleep(3)
 
-                # Click "Apply" button
-                apply_btn = wait.until(
-                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Apply')]"))
-                )
-                apply_btn.click()
-                time.sleep(2)
+                # Step 1: Click "Apply" button
+                try:
+                    apply_btn = wait.until(
+                        EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Apply')]"))
+                    )
+                    apply_btn.click()
+                    print("✅ Clicked 'Apply' button.")
+                except Exception:
+                    print("⚠️ Apply button not found directly, checking alternative...")
+                    driver.find_element(By.XPATH, "//a[contains(.,'Apply now')]").click()
 
-                # Upload resume
+                time.sleep(3)
+
+                # Step 2: Upload resume
                 upload_input = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
                 )
                 upload_input.send_keys(os.path.abspath(resume_path))
-                print(f"Uploaded resume for {job_title}")
+                print(f"📄 Uploaded resume for {job_title}")
+                time.sleep(2)
 
-                # Click "Submit" button
+                # Step 3: Click "Submit" immediately after upload
                 submit_btn = wait.until(
-                    EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Submit')]"))
+                    EC.element_to_be_clickable((By.XPATH, "//button[contains(.,'Submit')]"))
                 )
                 submit_btn.click()
-                print(f"Successfully applied to {job_title}")
+                print(f"🎯 Submitted application for {job_title}")
 
                 results.append({
                     "job": job_title,
@@ -201,10 +207,10 @@ class InternshalaApplyTool(BaseTool):
                     "status": "Applied"
                 })
 
-                time.sleep(3)
+                time.sleep(2)
 
             except Exception as e:
-                print(f"Failed for {job_title}: {e}")
+                print(f"❌ Failed for {job_title}: {e}")
                 results.append({
                     "job": job_title,
                     "link": job_link,
@@ -212,22 +218,23 @@ class InternshalaApplyTool(BaseTool):
                 })
                 continue
 
-        # Save application log
+        # --- Save results ---
         with open("Applied.json", "w", encoding="utf-8") as f:
             json.dump(results, f, indent=4)
 
+        print("\n✅ Application process completed. Results saved to Applied.json.")
         return results
 
     
     
 login_tool=InternshalaLoginTool()    
-# login_tool.run()
+login_tool.run()
 
 search_tool = ScrapeWebsiteTool(
     website_url="https://internshala.com/internships/machine-learning-internship"
     )
-# search_tool.run()
+search_tool.run()
 file_read_tool=FileReadTool(file_path="skills.txt")
 
 apply_tool = InternshalaApplyTool()
-# apply_tool.run()
+apply_tool.run()
