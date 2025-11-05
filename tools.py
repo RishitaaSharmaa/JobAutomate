@@ -221,18 +221,18 @@ class InternshalaApplyTool(BaseTool):
             except Exception as e:
                 print(f"❌ Failed for {job_title}: {e}")
 
-        print("\n✅ All internships processed successfully.")
-        return "🎉 All applications submitted."
+        print("\n All internships processed successfully.")
+        return "All applications submitted."
 
     
 login_tool=InternshalaLoginTool()    
-login_tool.run()
+# login_tool.run()
 
 search_tool = ScrapeWebsiteTool(
     website_url="https://internshala.com/internships/machine-learning-internship"
     )
-search_tool.run()
+# search_tool.run()
 file_read_tool=FileReadTool(file_path="skills.txt")
 
 apply_tool = InternshalaApplyTool()
-apply_tool.run()
+# apply_tool.run()
