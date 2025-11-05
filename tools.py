@@ -12,10 +12,11 @@ from dotenv import load_dotenv
 import os, json, time 
 import undetected_chromedriver as uc
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains  # ✅ add this
 
 load_dotenv()
 driver = None
-
+wait = None  
 
 class InternshalaLoginTool(BaseTool):
     name: str = "Internshala Login Tool"
@@ -134,31 +135,32 @@ class ScrapeWebsiteTool(BaseTool):
 
 class InternshalaApplyTool(BaseTool):
     name: str = "Internshala Apply Tool"
-    description: str = "Opens each internship link, waits for manual login, uploads resume, and submits application."
+    description: str = "Automatically applies to internships by clicking Apply, uploading resume, and submitting."
 
     def _run(self, *args, **kwargs):
+        global driver
+        if driver is None:
+            return "❌ No global driver found. Please run the login tool first."
+
         ranked_file = "webdata.json"
+        resume_path = os.path.abspath("Rishita_Sharma.pdf")
 
         if not os.path.exists(ranked_file):
-            return "Error: webdata.json not found."
+            return "❌ Error: webdata.json not found."
 
-        # Load JSON list
+        if not os.path.exists(resume_path):
+            return f"❌ Error: Resume file not found at {resume_path}"
+
+        # Load internship data
         with open(ranked_file, "r", encoding="utf-8") as f:
             data = json.load(f)
         ranked_jobs = data if isinstance(data, list) else data.get("internships", [])
 
         if not ranked_jobs:
-            return "No internships found in webdata.json."
+            return "⚠️ No internships found in webdata.json."
 
-        # Setup Selenium
-        chrome_options = Options()
-        chrome_options.add_experimental_option("detach", True)
-        driver = webdriver.Chrome(options=chrome_options)
         wait = WebDriverWait(driver, 25)
-
-        print("\n➡️ Please log in manually to Internshala when the browser opens.")
-        driver.get("https://internshala.com/login")
-        input("Press ENTER after logging in successfully...")
+        print(f"\n🚀 Starting automated applications for {len(ranked_jobs)} internships...")
 
         for job in ranked_jobs:
             job_title = job.get("title", "Unknown Job")
@@ -170,49 +172,59 @@ class InternshalaApplyTool(BaseTool):
             try:
                 print(f"\n🔹 Opening job: {job_title}")
                 driver.get(job_link)
-                time.sleep(5)
-
-                # Try different button patterns
-                try:
-                    apply_btn = wait.until(EC.element_to_be_clickable((
-                        By.XPATH, "//button[contains(text(),'Apply Now') or contains(text(),'Apply') or contains(text(),'Internship')]"
-                    )))
-                except:
-                    # fallback - sometimes it's a link
-                    apply_btn = wait.until(EC.element_to_be_clickable((
-                        By.XPATH, "//a[contains(text(),'Apply Now') or contains(text(),'Apply')]"
-                    )))
-
-                # Scroll and click
-                driver.execute_script("arguments[0].scrollIntoView(true);", apply_btn)
-                ActionChains(driver).move_to_element(apply_btn).click().perform()
-                print("🟢 Clicked Apply button.")
                 time.sleep(4)
 
-                # Wait for upload input
-                upload_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='file']")))
-                print("📂 Please upload your resume manually in the browser.")
-                while upload_input.get_attribute("value") == "":
-                    time.sleep(2)
+                # ✅ Click the "Apply" button
+                try:
+                    apply_btn = wait.until(EC.element_to_be_clickable((
+                        By.XPATH, "//button[contains(text(),'Apply') or contains(text(),'Apply Now')]"
+                    )))
+                except:
+                    apply_btn = wait.until(EC.element_to_be_clickable((
+                        By.XPATH, "//a[contains(text(),'Apply') or contains(text(),'Apply Now')]"
+                    )))
 
-                print("✅ Resume uploaded. Submitting...")
+                driver.execute_script("arguments[0].scrollIntoView(true);", apply_btn)
+                ActionChains(driver).move_to_element(apply_btn).pause(1).click().perform()
+                print("🟢 Clicked Apply button.")
+                time.sleep(3)
 
-                # Click Submit
-                submit_btn = wait.until(EC.element_to_be_clickable((
-                    By.XPATH, "//button[contains(text(),'Submit') or contains(text(),'Apply')]"
-                )))
+                # ✅ Upload resume automatically
+                upload_input = wait.until(
+                    EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
+                )
+                upload_input.send_keys(resume_path)
+                print("📎 Resume uploaded automatically.")
+                time.sleep(2)
+
+                # ✅ Handle "Submit" button (both <button> and <input>)
+                try:
+                    submit_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Submit')]")))
+                    driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
+                    driver.execute_script("arguments[0].click();", submit_btn)
+                    print("✅ Submitted successfully")
+                except Exception as e:
+                    print(f"❌ Submit failed: {e}")
+
+
                 driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
-                ActionChains(driver).move_to_element(submit_btn).click().perform()
+                time.sleep(1)
+
+                try:
+                    ActionChains(driver).move_to_element(submit_btn).pause(1).click().perform()
+                except:
+                    driver.execute_script("arguments[0].click();", submit_btn)
+
                 print(f"🎯 Application submitted for: {job_title}")
                 time.sleep(5)
 
             except Exception as e:
                 print(f"❌ Failed for {job_title}: {e}")
 
-        print("\n✅ All internships processed.")
-        driver.quit()
-        return "Applications completed."
+        print("\n✅ All internships processed successfully.")
+        return "🎉 All applications submitted."
 
+    
 login_tool=InternshalaLoginTool()    
 login_tool.run()
 
