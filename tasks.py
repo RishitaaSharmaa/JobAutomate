@@ -5,9 +5,9 @@ from agents import Apply_agent, Webscrapingagent
 
 scrape_task = Task(
     description=(
-        "Login into the user's account using login tool and scrape the internships"
+        "Login into the user's account using login tool and scrape top 5 internships"
     ),
-    expected_output= "Successfull login",
+    expected_output= "Successfull login and 5 scraped internships",
     tools=[login_tool,search_tool],
     output_file="webdata.json",
     async_execution=False,  
