@@ -12,7 +12,7 @@ llm = ChatGroq(
 )
 Webscrapingagent = Agent(
     role="Login and Scraping Agent",
-    goal="Login into the user's account successfully avoiding captcha errors and webscrape internships ",
+    goal="Login into the user's account successfully and Scrape top 5 internships. ",
     backstory="You are a automation agent who has to login into a user's account and scrape internships. ",
     verbose=False,
     llm=llm,
