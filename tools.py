@@ -12,7 +12,8 @@ from dotenv import load_dotenv
 import os, json, time 
 import undetected_chromedriver as uc
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains  # ✅ add this
+from selenium.webdriver.common.action_chains import ActionChains 
+
 
 load_dotenv()
 driver = None
@@ -53,7 +54,6 @@ class InternshalaLoginTool(BaseTool):
         except Exception as e:
             return f"❌ Login verification failed: {e}"
         
-
 
 class ScrapeWebsiteTool(BaseTool):
     name: str = "Internshala Scraper Tool"
@@ -132,7 +132,6 @@ class ScrapeWebsiteTool(BaseTool):
                 f.write(driver.page_source)
             return {"internships": [], "error": str(e)}
 
-
 class InternshalaApplyTool(BaseTool):
     name: str = "Internshala Apply Tool"
     description: str = "Automatically applies to internships by clicking Apply, uploading resume, and submitting."
@@ -197,7 +196,6 @@ class InternshalaApplyTool(BaseTool):
                 print("📎 Resume uploaded automatically.")
                 time.sleep(2)
 
-                # ✅ Handle "Submit" button (both <button> and <input>)
                 try:
                     submit_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Submit')]")))
                     driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
@@ -226,13 +224,13 @@ class InternshalaApplyTool(BaseTool):
 
     
 login_tool=InternshalaLoginTool()    
-# login_tool.run()
+login_tool.run()
 
 search_tool = ScrapeWebsiteTool(
     website_url="https://internshala.com/internships/machine-learning-internship"
     )
-# search_tool.run()
+search_tool.run()
 file_read_tool=FileReadTool(file_path="skills.txt")
 
 apply_tool = InternshalaApplyTool()
-# apply_tool.run()
+apply_tool.run()
