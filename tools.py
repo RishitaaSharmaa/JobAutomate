@@ -33,15 +33,15 @@ class InternshalaLoginTool(BaseTool):
         chrome_options.add_experimental_option("detach", True)
         driver = webdriver.Chrome(options=chrome_options)
 
-        print("🚀 Opening Internshala login page...")
+        print(" Opening Internshala login page...")
         driver.get("https://internshala.com/login")
 
-        print("\n🔑 Please log in manually in the browser window.")
-        print("⚠️ Solve any CAPTCHA if prompted.")
+        print("\n Please log in manually in the browser window.")
+        print(" Solve any CAPTCHA if prompted.")
         print("Once you are successfully logged in and your dashboard is visible, press ENTER here to continue...")
 
         # Wait for user confirmation in console
-        input("👉 Press ENTER after you’ve logged in: ")
+        input(" Press ENTER after you’ve logged in: ")
 
         try:
             # Verify login by checking if the dashboard/homepage is loaded
@@ -49,10 +49,10 @@ class InternshalaLoginTool(BaseTool):
             wait.until(
                 EC.presence_of_element_located((By.XPATH, "//a[contains(@href, '/internships')]"))
             )
-            print("✅ Login detected. Global driver initialized successfully.")
+            print("Login detected. Global driver initialized successfully.")
             return "Login successful. You may now use other tools with this driver."
         except Exception as e:
-            return f"❌ Login verification failed: {e}"
+            return f" Login verification failed: {e}"
         
 
 class ScrapeWebsiteTool(BaseTool):
@@ -139,16 +139,16 @@ class InternshalaApplyTool(BaseTool):
     def _run(self, *args, **kwargs):
         global driver
         if driver is None:
-            return "❌ No global driver found. Please run the login tool first."
+            return " No global driver found. Please run the login tool first."
 
         ranked_file = "webdata.json"
         resume_path = os.path.abspath("Rishita_Sharma.pdf")
 
         if not os.path.exists(ranked_file):
-            return "❌ Error: webdata.json not found."
+            return " Error: webdata.json not found."
 
         if not os.path.exists(resume_path):
-            return f"❌ Error: Resume file not found at {resume_path}"
+            return f" Error: Resume file not found at {resume_path}"
 
         # Load internship data
         with open(ranked_file, "r", encoding="utf-8") as f:
@@ -156,10 +156,10 @@ class InternshalaApplyTool(BaseTool):
         ranked_jobs = data if isinstance(data, list) else data.get("internships", [])
 
         if not ranked_jobs:
-            return "⚠️ No internships found in webdata.json."
+            return " No internships found in webdata.json."
 
         wait = WebDriverWait(driver, 25)
-        print(f"\n🚀 Starting automated applications for {len(ranked_jobs)} internships...")
+        print(f"\n Starting automated applications for {len(ranked_jobs)} internships...")
 
         for job in ranked_jobs:
             job_title = job.get("title", "Unknown Job")
@@ -173,7 +173,7 @@ class InternshalaApplyTool(BaseTool):
                 driver.get(job_link)
                 time.sleep(4)
 
-                # ✅ Click the "Apply" button
+                #  Click the "Apply" button
                 try:
                     apply_btn = wait.until(EC.element_to_be_clickable((
                         By.XPATH, "//button[contains(text(),'Apply') or contains(text(),'Apply Now')]"
@@ -185,7 +185,7 @@ class InternshalaApplyTool(BaseTool):
 
                 driver.execute_script("arguments[0].scrollIntoView(true);", apply_btn)
                 ActionChains(driver).move_to_element(apply_btn).pause(1).click().perform()
-                print("🟢 Clicked Apply button.")
+                print("Clicked Apply button.")
                 time.sleep(3)
 
                 # ✅ Upload resume automatically
@@ -200,9 +200,9 @@ class InternshalaApplyTool(BaseTool):
                     submit_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Submit')]")))
                     driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
                     driver.execute_script("arguments[0].click();", submit_btn)
-                    print("✅ Submitted successfully")
+                    print(" Submitted successfully")
                 except Exception as e:
-                    print(f"❌ Submit failed: {e}")
+                    print(f" Submit failed: {e}")
 
 
                 driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
@@ -217,20 +217,20 @@ class InternshalaApplyTool(BaseTool):
                 time.sleep(5)
 
             except Exception as e:
-                print(f"❌ Failed for {job_title}: {e}")
+                print(f"Failed for {job_title}: {e}")
 
         print("\n All internships processed successfully.")
         return "All applications submitted."
 
     
 login_tool=InternshalaLoginTool()    
-# login_tool.run()
+login_tool.run()
 
 search_tool = ScrapeWebsiteTool(
     website_url="https://internshala.com/internships/machine-learning-internship"
     )
-# search_tool.run()
+search_tool.run()
 file_read_tool=FileReadTool(file_path="skills.txt")
 
 apply_tool = InternshalaApplyTool()
-# apply_tool.run()
+apply_tool.run()
