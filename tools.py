@@ -224,13 +224,13 @@ class InternshalaApplyTool(BaseTool):
 
     
 login_tool=InternshalaLoginTool()    
-login_tool.run()
+# login_tool.run()
 
 search_tool = ScrapeWebsiteTool(
     website_url="https://internshala.com/internships/machine-learning-internship"
     )
-search_tool.run()
+# search_tool.run()
 file_read_tool=FileReadTool(file_path="skills.txt")
 
 apply_tool = InternshalaApplyTool()
-apply_tool.run()
+# apply_tool.run()
