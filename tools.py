@@ -173,7 +173,9 @@ class InternshalaApplyTool(BaseTool):
                 driver.get(job_link)
                 time.sleep(4)
 
-                #  Click the "Apply" button
+                # ----------------------------
+                # CLICK APPLY BUTTON
+                # ----------------------------
                 try:
                     apply_btn = wait.until(EC.element_to_be_clickable((
                         By.XPATH, "//button[contains(text(),'Apply') or contains(text(),'Apply Now')]"
@@ -188,49 +190,111 @@ class InternshalaApplyTool(BaseTool):
                 print("Clicked Apply button.")
                 time.sleep(3)
 
-                # ✅ Upload resume automatically
-                upload_input = wait.until(
-                    EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
-                )
-                upload_input.send_keys(resume_path)
-                print("📎 Resume uploaded automatically.")
+                # ----------------------------
+                # UPLOAD RESUME
+                # ----------------------------
+                try:
+                    upload_input = wait.until(
+                        EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
+                    )
+                    upload_input.send_keys(resume_path)
+                    print("📎 Resume uploaded automatically.")
+                except:
+                    print("⚠ No upload field detected (Internshala auto_resume used).")
+
                 time.sleep(2)
 
+                # ----------------------------
+                # FIND & CLICK SUBMIT BUTTON
+                # ----------------------------
+                print("🔍 Locating the submit button...")
+
+                submit_btn = None
+
+                # 1️⃣ Exact match (your screenshot)
                 try:
-                    submit_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Submit')]")))
-                    driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
-                    driver.execute_script("arguments[0].click();", submit_btn)
-                    print(" Submitted successfully")
-                except Exception as e:
-                    print(f" Submit failed: {e}")
+                    submit_btn = wait.until(EC.element_to_be_clickable((
+                        By.XPATH, "//input[@type='submit' and @id='submit']"
+                    )))
+                    print("✔ Found submit id='submit'")
+                except:
+                    pass
 
+                # 2️⃣ Fallback to value
+                if submit_btn is None:
+                    try:
+                        submit_btn = wait.until(EC.element_to_be_clickable((
+                            By.XPATH, "//input[@value='Submit']"
+                        )))
+                        print("✔ Found submit value='Submit'")
+                    except:
+                        pass
 
-                driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
+                # 3️⃣ Fallback: any input[type='submit']
+                if submit_btn is None:
+                    try:
+                        all_submits = driver.find_elements(By.XPATH, "//input[@type='submit']")
+                        for s in all_submits:
+                            if s.is_displayed():
+                                submit_btn = s
+                                print("✔ Found visible submit <input>")
+                                break
+                    except:
+                        pass
+
+                # 4️⃣ Last fallback → button with text
+                if submit_btn is None:
+                    try:
+                        submit_btn = wait.until(EC.element_to_be_clickable((
+                            By.XPATH, "//button[contains(text(),'Submit')]"
+                        )))
+                        print("✔ Found <button> Submit")
+                    except:
+                        pass
+
+                if submit_btn is None:
+                    print("❌ Submit button NOT FOUND!")
+                    continue
+
+                # SCROLL INTO VIEW
+                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", submit_btn)
                 time.sleep(1)
 
+                # JS CLICK (most reliable)
                 try:
-                    ActionChains(driver).move_to_element(submit_btn).pause(1).click().perform()
-                except:
                     driver.execute_script("arguments[0].click();", submit_btn)
+                    print("✔ Submit clicked (JS)")
+                except:
+                    print("⚠ JS click failed → trying ActionChains")
+                    try:
+                        ActionChains(driver).move_to_element(submit_btn).pause(1).click().perform()
+                        print("✔ Submit clicked (ActionChains)")
+                    except:
+                        print("⚠ Both failed → dispatching click event")
+                        driver.execute_script("""
+                            arguments[0].dispatchEvent(new MouseEvent('click', {bubbles:true}));
+                        """, submit_btn)
+
+                time.sleep(2)
 
                 print(f"🎯 Application submitted for: {job_title}")
-                time.sleep(5)
+                time.sleep(3)
 
             except Exception as e:
-                print(f"Failed for {job_title}: {e}")
+                print(f"❌ Failed for {job_title}: {e}")
 
         print("\n All internships processed successfully.")
         return "All applications submitted."
 
     
 login_tool=InternshalaLoginTool()    
-login_tool.run()
+# login_tool.run()
 
 search_tool = ScrapeWebsiteTool(
     website_url="https://internshala.com/internships/machine-learning-internship"
     )
-search_tool.run()
+# search_tool.run()
 file_read_tool=FileReadTool(file_path="skills.txt")
 
 apply_tool = InternshalaApplyTool()
-apply_tool.run()
+# apply_tool.run()
