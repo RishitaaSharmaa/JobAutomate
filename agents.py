@@ -19,15 +19,6 @@ Webscrapingagent = Agent(
     allow_delegation=False,
 )
 
-# Filter_agent = Agent(
-#     role="Job Ranker",
-#     goal="Rank internships based on similarity with the resume content.",
-#     backstory="An expert resume analyst ranking jobs for best fit.",
-#     verbose=False,
-#     llm=llm,
-#     allow_delegation=False,
-#     cache=True
-# )
 Apply_agent = Agent(
     role="Job Applier",
     goal="Apply to the with a tailored professional message .",
@@ -35,5 +26,6 @@ Apply_agent = Agent(
     verbose=False,
     llm=llm,
     allow_delegation=False,
-    cache=True
+    cache=True,
+    
 )
