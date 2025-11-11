@@ -16,7 +16,7 @@ The system uses a multi-agent architecture where specialized agents handle login
 
 ## ✨ Features
 
-- ✅ **Manual Login with CAPTCHA Support** - Handles manual login to bypass CAPTCHA using Selenium
+- ✅ **Manual Login** - Handles manual login  using Selenium
 - ✅ **Intelligent Web Scraping** - Extracts internship title, company, and application links
 - ✅ **Automated Applications** - Fills forms, uploads resume, and submits applications
 - ✅ **Multi-Agent Architecture** - Uses CrewAI for orchestrated agent workflows
@@ -36,8 +36,6 @@ The system uses a multi-agent architecture where specialized agents handle login
 | **Groq** | LLM API for intelligent agent reasoning |
 | **LangChain** | LLM framework and tools |
 | **Python 3.10+** | Core programming language |
-| **PyPDF2** | PDF processing for resume handling |
-| **Undetected ChromeDriver** | Bypass bot detection |
 
 ---
 
@@ -75,12 +73,8 @@ The system uses a multi-agent architecture where specialized agents handle login
    ```
 
 5. **Prepare Resume**
-   - Place your resume as `Rishita_Sharma.pdf` in the project root
-   - Update the filename in `tools.py` if needed
-
-6. **Update Skills**
-   - Edit `skills.txt` with your relevant skills and experience
-   - Format: `Category: Skill1, Skill2, Skill3`
+   - Place your resume in the project root
+   - Update the filename in `tools.py` 
 
 ---
 
@@ -104,7 +98,6 @@ After execution, check these files:
 |------|---------|
 | `webdata.json` | Scraped internship listings |
 | `Applied.json` | Successfully applied positions |
-| `debug_internshala.html` | HTML debug file (if scraping fails) |
 
 ---
 
@@ -117,7 +110,6 @@ internshala-automation/
 ├── tasks.py               # Task definitions for agents
 ├── tools.py               # Custom Selenium-based tools
 ├── requirements.txt       # Python dependencies
-├── skills.txt             # Your skills and experience
 ├── Rishita_Sharma.pdf    # Your resume (rename as needed)
 ├── .env                   # Environment variables (not in repo)
 ├── webdata.json          # Scraped internships (generated)
@@ -146,7 +138,7 @@ internshala-automation/
 #### InternshalaLoginTool
 ```python
 - Opens Internshala login page
-- Waits for manual user login (CAPTCHA handling)
+- Waits for manual user login 
 - Initializes global Selenium driver for reuse
 ```
 
@@ -260,97 +252,6 @@ model="groq/qwen/qwen3-32b"
 
 ---
 
-## 📊 Output Examples
-
-### webdata.json (Scraped Internships)
-```json
-{
-  "internships": [
-    {
-      "title": "Machine Learning Intern",
-      "company": "Tech Startup Pvt Ltd",
-      "link": "https://internshala.com/internship/detail/..."
-    },
-    {
-      "title": "AI/ML Internship",
-      "company": "Data Science Corp Limited",
-      "link": "https://internshala.com/internship/detail/..."
-    }
-  ]
-}
-```
-
-### Applied.json (Application Results)
-```json
-{
-  "applied": [
-    {
-      "title": "Machine Learning Intern",
-      "company": "Tech Startup Pvt Ltd",
-      "status": "submitted",
-      "timestamp": "2025-11-11 09:45:23"
-    }
-  ]
-}
-```
-
----
-
-## 🐛 Troubleshooting
-
-### Issue: JSONDecodeError in webdata.json
-
-**Solution**: Ensure the scraper tool saves JSON properly. The file should contain valid JSON in format:
-```json
-{"internships": [...]}
-```
-
-### Issue: CAPTCHA not being handled
-
-**Solution**: The login tool waits for manual login. Solve the CAPTCHA in the browser window that opens, then press ENTER in the console.
-
-### Issue: Resume not uploading
-
-**Solutions**:
-1. Verify resume file exists: `ls Rishita_Sharma.pdf`
-2. Check absolute path: `os.path.abspath("Rishita_Sharma.pdf")`
-3. Internshala may auto-fill resume - check if application still succeeds
-
-### Issue: Submit button not found
-
-**Debugging**:
-- The tool tries multiple XPath selectors for submit buttons
-- Check `debug_internshala.html` for actual button structure
-- Update XPath in `tools.py` line 175-195 if needed
-
-### Issue: Driver not initialized
-
-**Solution**: Ensure login tool runs first:
-```python
-# In crew.py, ensure Scrape Task comes before Apply Task
-# and login_tool is called as dependency
-```
-
----
-
-## 🔐 Security Considerations
-
-- **API Keys**: Never commit `.env` file to Git
-- **Resume**: Keep resume file locally, don't share sensitive versions
-- **Account Access**: Use a dedicated account for automation
-- **Rate Limiting**: The crew is configured with `max_rpm=100` to avoid blocking
-- **CAPTCHA**: Handled manually to avoid detection
-
----
-
-## 📝 Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `GROQ_API_KEY` | Groq API key for LLM | Yes |
-
----
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -358,55 +259,6 @@ model="groq/qwen/qwen3-32b"
 3. Commit changes (`git commit -am 'Add new feature'`)
 4. Push to branch (`git push origin feature/improvement`)
 5. Create Pull Request
-
----
-
-## ⚠️ Disclaimer
-
-This project is for **educational and personal use only**. Users are responsible for:
-- Complying with Internshala's Terms of Service
-- Not violating any website's robots.txt or automation policies
-- Using this tool ethically and responsibly
-- Ensuring they have permission to automate applications on their account
-
-The authors are not responsible for account suspensions or violations resulting from misuse.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
----
-
-## 💡 Future Enhancements
-
-- [ ] Support for multiple internship categories
-- [ ] Intelligent cover letter generation using LLMs
-- [ ] Application status tracking and analytics
-- [ ] Email notifications for successful applications
-- [ ] Integration with LinkedIn job postings
-- [ ] Database storage for application history
-- [ ] Dashboard for monitoring and reporting
-- [ ] Multi-threaded application processing
-
----
-
-## 📧 Contact & Support
-
-For issues, questions, or suggestions:
-- Open an issue on GitHub
-- Check existing issues for solutions
-- Review the troubleshooting section
-
----
-
-## 🙏 Acknowledgments
-
-- **CrewAI** for the amazing multi-agent framework
-- **Groq** for fast and powerful LLM APIs
-- **Selenium** community for web automation tools
-- **Internshala** for the internship platform
 
 ---
 
