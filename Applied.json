@@ -1,47 +1,26 @@
 [
-    {
-        "job": "AI Agent Development",
-        "link": "https://internshala.com/internship/detail/ai-agent-development-internship-in-bangalore-at-rugas-technologies-private-limited1761304873",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "AI/ML Engineer (Model Training & Experimentation)",
-        "link": "https://internshala.com/internship/detail/work-from-home-ai-ml-engineer-model-training-experimentation-internship-at-marpu-foundation1761568931",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "Software Evaluation Developer",
-        "link": "https://internshala.com/internship/detail/work-from-home-software-evaluation-developer-internship-at-codefeast1761627445",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "Machine Learning",
-        "link": "https://internshala.com/internship/detail/machine-learning-internship-in-delhi-at-essi-integrated-technologies1762153930",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "Python Development",
-        "link": "https://internshala.com/internship/detail/work-from-home-python-development-internship-at-megaminds-it-services1761722125",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "Data Science",
-        "link": "https://internshala.com/internship/detail/work-from-home-part-time-data-science-internship-at-mindenious-edutech1761737068",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "Artificial Intelligence (AI)",
-        "link": "https://internshala.com/internship/detail/part-time-artificial-intelligence-ai-internship-in-gurgaon-at-samarth-community1762240755",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "Full Stack Development",
-        "link": "https://internshala.com/internship/detail/work-from-home-full-stack-development-internship-at-derived-mind-technologies-private-limited1762159226",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    },
-    {
-        "job": "Full Stack Development",
-        "link": "https://internshala.com/internship/detail/work-from-home-full-stack-development-internship-at-renan-partners1762164643",
-        "status": "Failed - Message: \nStacktrace:\n\tGetHandleVerifier [0x0x7ff6bcfee8e5+80021]\n\tGetHandleVerifier [0x0x7ff6bcfee940+80112]\n\t(No symbol) [0x0x7ff6bcd7060f]\n\t(No symbol) [0x0x7ff6bcdc8854]\n\t(No symbol) [0x0x7ff6bcdc8b1c]\n\t(No symbol) [0x0x7ff6bce1c927]\n\t(No symbol) [0x0x7ff6bcdf126f]\n\t(No symbol) [0x0x7ff6bce1968a]\n\t(No symbol) [0x0x7ff6bcdf1003]\n\t(No symbol) [0x0x7ff6bcdb95d1]\n\t(No symbol) [0x0x7ff6bcdba3f3]\n\tGetHandleVerifier [0x0x7ff6bd2adc7d+2960429]\n\tGetHandleVerifier [0x0x7ff6bd2a7f3a+2936554]\n\tGetHandleVerifier [0x0x7ff6bd2c8977+3070247]\n\tGetHandleVerifier [0x0x7ff6bd0083ce+185214]\n\tGetHandleVerifier [0x0x7ff6bd00fe1f+216527]\n\tGetHandleVerifier [0x0x7ff6bcff7b24+117460]\n\tGetHandleVerifier [0x0x7ff6bcff7cdf+117903]\n\tGetHandleVerifier [0x0x7ff6bcfddbb8+11112]\n\tBaseThreadInitThunk [0x0x7ffd0352e8d7+23]\n\tRtlUserThreadStart [0x0x7ffd0556c53c+44]\n"
-    }
+  {
+    "title": "Data Science",
+    "company": "Mindenious Edutech",
+    "location": "Work from home",
+    "duration": "1 Month",
+    "stipend": "₹3,000 - 17,000/month",
+    "status": "Resume uploaded successfully"
+  },
+  {
+    "title": "Data Science",
+    "company": "Faclon",
+    "location": "Mumbai",
+    "duration": "5 Months",
+    "stipend": "₹15,000 - 20,000/month",
+    "status": "Resume uploaded successfully"
+  },
+  {
+    "title": "Artificial Intelligence (AI)",
+    "company": "Nexora",
+    "location": "Work from home",
+    "duration": "6 Months",
+    "stipend": "₹15,000 - 25,000/month",
+    "status": "Resume uploaded successfully"
+  }
 ]
