@@ -1,7 +1,6 @@
 from crewai import Task
-from tools import  search_tool, file_read_tool, apply_tool,login_tool
+from tools import  search_tool, apply_tool,login_tool
 from agents import Apply_agent, Webscrapingagent
-# from agents import Filter_agent
 
 scrape_task = Task(
     description=(
@@ -13,26 +12,13 @@ scrape_task = Task(
     async_execution=False,  
     agent=Webscrapingagent
 )
-skills="skills.txt"
-interns="internships.json"
-# filter_task = Task(
-#     description=(
-#         f"Read {skills} and the internships from {interns} and rank them based on relevance to resume keywords and skill."
-#     ),
-#     expected_output="JSON list of ranked jobs with similarity scores.",
-#     tools=[file_read_tool],
-#     agent=Filter_agent,
-#     output_file="ranked.json",
-#     async_execution=False,
-# )
 
-resume_path="Rishita_Sharma.pdf"
 Apply_task = Task(
-    description=(
-        "Go to the links in webdata.json, and open the job. "
-        "For each listing, upload and submit the resume. "
-        "Show successful uploads"
-    ),
+    description = (
+    "Go to the links extracted by the scrape task, and open each job. "
+    "For every listing, answer any required questions or write the cover letter if prompted, "
+    "upload the resume, submit the application, and show successful uploads."
+),
     expected_output="JSON list of jobs where resume gets uploaded successfully.",
     tools=[apply_tool],
     agent=Apply_agent,
