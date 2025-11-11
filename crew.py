@@ -1,8 +1,6 @@
 from crewai import Crew, Process
-# from agents import  Filter_agent
 from agents import Apply_agent, Webscrapingagent
 from tasks import scrape_task
-# from tasks import filter_task
 
 from tasks import Apply_task
 
