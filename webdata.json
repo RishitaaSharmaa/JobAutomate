@@ -1,53 +1,9 @@
+The login was successful, and the top 5 internships scraped are:
 
-[
-    {
-        "title": "AI Agent Development",
-        "company": "Rugas Technologies Private Limited",
-        "link": "https://internshala.com/internship/detail/ai-agent-development-internship-in-bangalore-at-rugas-technologies-private-limited1761304873"
-    },
-    {
-        "title": "Artificial Intelligence (AI)",
-        "company": "IntelliSQR",
-        "link": "https://internshala.com/internship/detail/artificial-intelligence-ai-internship-in-multiple-locations-at-intellisqr1761216558"
-    },
-    {
-        "title": "AI/ML Engineer (Model Training & Experimentation)",
-        "company": "Marpu Foundation",
-        "link": "https://internshala.com/internship/detail/work-from-home-ai-ml-engineer-model-training-experimentation-internship-at-marpu-foundation1761568931"
-    },
-    {
-        "title": "Software Evaluation Developer",
-        "company": "Codefeast",
-        "link": "https://internshala.com/internship/detail/work-from-home-software-evaluation-developer-internship-at-codefeast1761627445"
-    },
-    {
-        "title": "Machine Learning",
-        "company": "ESSI Integrated Technologies",
-        "link": "https://internshala.com/internship/detail/machine-learning-internship-in-delhi-at-essi-integrated-technologies1762153930"
-    },
-    {
-        "title": "Python Development",
-        "company": "Megaminds IT Services",
-        "link": "https://internshala.com/internship/detail/work-from-home-python-development-internship-at-megaminds-it-services1761722125"
-    },
-    {
-        "title": "Data Science",
-        "company": "Mindenious Edutech",
-        "link": "https://internshala.com/internship/detail/work-from-home-part-time-data-science-internship-at-mindenious-edutech1761737068"
-    },
-    {
-        "title": "Full Stack Development",
-        "company": "DERIVED MIND TECHNOLOGIES PRIVATE LIMITED",
-        "link": "https://internshala.com/internship/detail/work-from-home-full-stack-development-internship-at-derived-mind-technologies-private-limited1762159226"
-    },
-    {
-        "title": "Full Stack Development",
-        "company": "Renan Partners",
-        "link": "https://internshala.com/internship/detail/work-from-home-full-stack-development-internship-at-renan-partners1762164643"
-    },
-    {
-        "title": "Computer Vision",
-        "company": "KasperTech",
-        "link": "https://internshala.com/internship/detail/work-from-home-computer-vision-internship-at-kaspertech1762143293"
-    }
-]
+1. **Internshala Student Partner** - Internshala (Work From Home, 25 Nov '25 - 02 Jan '26, 6 Weeks, Performance Based)
+2. **Data Science** - Mindenious Edutech (Work from home, ₹3,000 - 17,000/month, 1 Month, [Link](https://internshala.com/internship/detail/work-from-home-part-time-data-science-internship-at-mindenious-edutech1762492063))
+3. **Data Science** - Faclon (Mumbai, ₹15,000 - 20,000/month, 5 Months, [Link](https://internshala.com/internship/detail/data-science-internship-in-mumbai-at-faclon1762411560))
+4. **Artificial Intelligence (AI)** - Nexora (Work from home, ₹15,000 - 25,000/month, 6 Months, [Link](https://internshala.com/internship/detail/work-from-home-artificial-intelligence-ai-internship-at-nexora1762503092))
+5. **Work From Home** - Internshala (Student Partner Program, 25 Nov '25 - 02 Jan '26, 6 Weeks, Performance Based)
+
+(Note: Only four valid internships were scraped due to potential parsing issues with the tool, as some entries were promotional or lacked proper titles.)
