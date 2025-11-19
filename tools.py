@@ -207,7 +207,7 @@ class InternshalaApplyTool(BaseTool):
                         submit_btn = wait.until(EC.element_to_be_clickable((
                             By.XPATH, "//input[@value='Submit']"
                         )))
-                        print("✔ Found submit value='Submit'")
+                        print("Found submit value='Submit'")
                     except:
                         pass
 

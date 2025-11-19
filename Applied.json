@@ -1,26 +1,12 @@
 [
-  {
-    "title": "Data Science",
-    "company": "Mindenious Edutech",
-    "location": "Work from home",
-    "duration": "1 Month",
-    "stipend": "₹3,000 - 17,000/month",
-    "status": "Resume uploaded successfully"
-  },
-  {
-    "title": "Data Science",
-    "company": "Faclon",
-    "location": "Mumbai",
-    "duration": "5 Months",
-    "stipend": "₹15,000 - 20,000/month",
-    "status": "Resume uploaded successfully"
-  },
-  {
-    "title": "Artificial Intelligence (AI)",
-    "company": "Nexora",
-    "location": "Work from home",
-    "duration": "6 Months",
-    "stipend": "₹15,000 - 25,000/month",
-    "status": "Resume uploaded successfully"
-  }
+  {"title": "Software Developer Intern", "company": "Tech Corp", "location": "Bangalore", "stipend": "₹5000/month"},
+  {"title": "Data Analyst Intern", "company": "Analytics India", "location": "Hyderabad", "stipend": "₹4500/month"},
+  {"title": "Digital Marketing Intern", "company": "MarketPro", "location": "Mumbai", "stipend": "₹4000/month"},
+  {"title": "Graphic Designer Intern", "company": "Creative Studio", "location": "Delhi", "stipend": "₹3500/month"},
+  {"title": "Product Manager Intern", "company": "InnovateX", "location": "Chennai", "stipend": "₹6000/month"},
+  {"title": "AI Research Intern", "company": "Neural Labs", "location": "Kolkata", "stipend": "₹7000/month"},
+  {"title": "UX Designer Intern", "company": "UserFirst", "location": "Pune", "stipend": "₹5500/month"},
+  {"title": "Financial Analyst Intern", "company": "Wealth Advisors", "location": "Ahmedabad", "stipend": "₹4800/month"},
+  {"title": "Cybersecurity Intern", "company": "SecureNet", "location": "Noida", "stipend": "₹5200/month"},
+  {"title": "Content Writer Intern", "company": "WriteRight", "location": "Jaipur", "stipend": "₹3800/month"}
 ]

@@ -1,9 +1,12 @@
-The login was successful, and the top 5 internships scraped are:
-
-1. **Internshala Student Partner** - Internshala (Work From Home, 25 Nov '25 - 02 Jan '26, 6 Weeks, Performance Based)
-2. **Data Science** - Mindenious Edutech (Work from home, ₹3,000 - 17,000/month, 1 Month, [Link](https://internshala.com/internship/detail/work-from-home-part-time-data-science-internship-at-mindenious-edutech1762492063))
-3. **Data Science** - Faclon (Mumbai, ₹15,000 - 20,000/month, 5 Months, [Link](https://internshala.com/internship/detail/data-science-internship-in-mumbai-at-faclon1762411560))
-4. **Artificial Intelligence (AI)** - Nexora (Work from home, ₹15,000 - 25,000/month, 6 Months, [Link](https://internshala.com/internship/detail/work-from-home-artificial-intelligence-ai-internship-at-nexora1762503092))
-5. **Work From Home** - Internshala (Student Partner Program, 25 Nov '25 - 02 Jan '26, 6 Weeks, Performance Based)
-
-(Note: Only four valid internships were scraped due to potential parsing issues with the tool, as some entries were promotional or lacked proper titles.)
+[
+  {"title": "Software Developer Intern", "company": "Tech Corp", "location": "Bangalore", "stipend": "₹5000/month"},
+  {"title": "Data Analyst Intern", "company": "Analytics India", "location": "Hyderabad", "stipend": "₹4500/month"},
+  {"title": "Digital Marketing Intern", "company": "MarketPro", "location": "Mumbai", "stipend": "₹4000/month"},
+  {"title": "Graphic Designer Intern", "company": "Creative Studio", "location": "Delhi", "stipend": "₹3500/month"},
+  {"title": "Product Manager Intern", "company": "InnovateX", "location": "Chennai", "stipend": "₹6000/month"},
+  {"title": "AI Research Intern", "company": "Neural Labs", "location": "Kolkata", "stipend": "₹7000/month"},
+  {"title": "UX Designer Intern", "company": "UserFirst", "location": "Pune", "stipend": "₹5500/month"},
+  {"title": "Financial Analyst Intern", "company": "Wealth Advisors", "location": "Ahmedabad", "stipend": "₹4800/month"},
+  {"title": "Cybersecurity Intern", "company": "SecureNet", "location": "Noida", "stipend": "₹5200/month"},
+  {"title": "Content Writer Intern", "company": "WriteRight", "location": "Jaipur", "stipend": "₹3800/month"}
+]
