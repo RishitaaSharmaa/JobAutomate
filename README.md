@@ -1,4 +1,4 @@
-# 🚀 Internshala Automation Bot
+# Job Automate
 
 An intelligent, end-to-end automation system for discovering and applying to machine learning internships on Internshala using **CrewAI** agents, **Selenium** web scraping, and **Groq LLMs**.
 
