@@ -7,3 +7,4 @@ dotenv
 PyPDF2
 crewai_tools
 undetected_chromedriver
+litellm
